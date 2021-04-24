@@ -11,3 +11,8 @@
 - **Output** - 서비스 소개 Landing Page & 웹 App
 - **기획분석 Team** - 서비스 기획자 & 데이터 분석가 > 실제 사용자 데이터 수집/분석
 - **개발 Team** - Front & Back End > 실제 프로덕트 개발/배포
+
+## Version
+
+- Node.js : 14.16.1
+- Npm : 6.14.12
