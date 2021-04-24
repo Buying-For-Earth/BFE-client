@@ -1,0 +1,27 @@
+.search {
+  margin: 0 auto;
+  width: 90%;
+  height: 100%;
+
+  .search-bar--container {
+    height: 53px;
+    margin-bottom: 10px;
+  }
+
+  .search-result--container {
+    .search-result__total {
+      margin-bottom: 10px;
+      .search-result__total__number {
+        color: green;
+      }
+    }
+    .search-result__product {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .search-result-box--container {
+        width: 47%;
+      }
+    }
+  }
+}
