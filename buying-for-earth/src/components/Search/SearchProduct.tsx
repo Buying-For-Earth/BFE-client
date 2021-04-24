@@ -4,11 +4,10 @@ import './SearchProduct.scss';
 
 function SearchProduct() {
   return (
-    <div className="searchbar--container">
-      <div className="searchbar">
+    <div className="search-bar--container">
+      <div className="search-bar">
         <FiSearch size="20" />
         <input type="search" placeholder="검색어를 입력해주세요" />
-        <div className="searchbar__hr"></div>
       </div>
     </div>
   );
