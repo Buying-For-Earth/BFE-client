@@ -1,0 +1,47 @@
+.container {
+  width: 100%;
+  .recommend {
+    height: 100%;
+
+    img {
+      height: 242px;
+    }
+  }
+
+  .title {
+    padding: 1rem;
+    color: #78be44;
+  }
+}
+
+.recommend-prod {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.new-prod {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  img {
+    width: 120px;
+    height: 120px;
+    padding: 16px;
+  }
+  div {
+  }
+}
+
+.pop-prod {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+
+  div {
+  }
+  img {
+    width: 120px;
+    height: 120px;
+    padding: 16px;
+  }
+}
