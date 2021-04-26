@@ -1,0 +1,32 @@
+.search-result-box--container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  .search-result-box__image {
+    background-color: black;
+    border: 1px solid;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .search-result-box__image::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+  .search-result-box__name {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0 0 4px 2px;
+  }
+  .search-result-box__discount-price {
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: 2px;
+  }
+  .search-result-box__price {
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 3px;
+    text-decoration: line-through;
+  }
+}
