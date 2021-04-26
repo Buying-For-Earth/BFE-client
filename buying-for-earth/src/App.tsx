@@ -5,6 +5,7 @@ import Search from './pages/Search';
 import Category from './pages/Category';
 import Mypage from './pages/Mypage';
 import Cart from './pages/Cart';
+import Product from './pages/Product';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path='/category' render={() => <Category />} />
       <Route path='/mypage' render={() => <Mypage />} />
       <Route path='/cart' render={() => <Cart />} />
+      <Route path='/product' render={() => <Product />} />
     </Switch>
   </div>
   );
