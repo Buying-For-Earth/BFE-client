@@ -1,6 +1,6 @@
-import React from 'react';
-import { FiSearch } from 'react-icons/fi'
-import './SearchProduct.scss';
+import React from "react";
+import { FiSearch } from "react-icons/fi";
+import "./SearchProduct.scss";
 
 function SearchProduct() {
   return (
