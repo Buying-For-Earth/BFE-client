@@ -1,0 +1,37 @@
+.orderer--container {
+  padding: 1.5rem;
+  background-color: white;
+  margin-top: 1rem;
+  .orderer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    svg {
+      font-size: 1.5rem;
+      color: rgb(181, 179, 179);
+    }
+  }
+
+  .orderer__info {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0;
+
+    .orderer__info__label {
+      font-size: 0.75rem;
+    }
+    .orderer__info__value {
+      height: 48px;
+      padding: 0rem 1rem;
+      border: rgb(181, 179, 179) 1px solid;
+      border-radius: 0.5rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .orderer__info__label::after {
+    content: '*';
+    color: red;
+  }
+}

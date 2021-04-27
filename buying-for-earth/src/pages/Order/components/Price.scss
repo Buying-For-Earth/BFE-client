@@ -1,0 +1,25 @@
+.price--container {
+  padding: 1.5rem;
+  background-color: white;
+  margin-top: 1rem;
+  .price__header {
+    font-size: 1.25rem;
+  }
+
+  .price {
+    display: flex;
+    padding: 0.5rem;
+    justify-content: space-between;
+  }
+
+  .price__total {
+    .price__value {
+      font-weight: 700;
+    }
+  }
+
+  .price__small {
+    color: rgba(181, 179, 179);
+    font-size: 0.8rem;
+  }
+}

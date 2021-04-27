@@ -1,0 +1,26 @@
+.dst--container {
+  padding: 1.5rem;
+  margin-top: 1rem;
+  background-color: white;
+
+  .dst__input {
+    padding-top: 1rem;
+
+    hr {
+      margin: 0.5rem;
+      border: solid 1px rgb(181, 179, 179);
+    }
+
+    .dst__input__info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+  }
+
+  .dst__input__label::after {
+    content: '*';
+    color: red;
+  }
+}
