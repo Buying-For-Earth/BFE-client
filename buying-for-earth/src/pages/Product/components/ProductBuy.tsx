@@ -25,7 +25,11 @@ function ProductBuy() {
           className="product-buy__modal"
           overlayClassName="product-buy__modal-overlay"
         >
-          <select name="네임" id="e"></select>
+          <select name="option1"></select>
+          <div className="modal__bottom-btn">
+            <button>장바구니</button>
+            <button>구매하기</button>
+          </div>
           <button className="close" onClick={handleCloseModal}>
             <BsChevronDown size="20" />
           </button>

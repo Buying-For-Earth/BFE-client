@@ -62,3 +62,27 @@
   padding-top: 5px;
   width: 20%;
 }
+.modal__bottom-btn {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  bottom: 10px;
+  width: 100%;
+}
+.modal__bottom-btn button {
+  width: 45%;
+  color: #fff;
+  height: 46px;
+  font-weight: bold;
+  font-size: 16px;
+}
+.modal__bottom-btn button:nth-child(1) {
+  border: 1px solid green;
+  color: green;
+  background-color: #fff;
+}
+.modal__bottom-btn button:nth-child(2) {
+  background-color: green;
+  color: #fff;
+  border: none;
+}
