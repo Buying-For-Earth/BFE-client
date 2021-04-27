@@ -4,6 +4,7 @@ import './OrderItem.scss';
 function OrderItem() {
   return (
     <div className="order-item--container">
+      <div className="order-item__header">주문상품</div>
       <div className="order-item__info">
         <div className="order-item__info__image"></div>
         <div className="order-item__info__wrap">

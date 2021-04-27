@@ -1,18 +1,23 @@
-.order-item__info {
-  padding: 0 1rem;
-  display: flex;
-  .order-item__info__image {
-    width: 80px;
-    height: 80px;
-    background-color: black;
-  }
-  .order-item__info__wrap {
-    padding: 0 1rem;
-  }
-  .wrap__price {
+.order-item--container {
+  padding: 1.5rem;
+  margin-top: 1rem;
+  background-color: white;
+  .order-item__info {
+    padding-top: 0.5rem;
     display: flex;
-  }
-  .wrap {
-    padding: 0.15rem;
+    .order-item__info__image {
+      width: 80px;
+      height: 80px;
+      background-color: black;
+    }
+    .order-item__info__wrap {
+      padding: 0 1rem;
+    }
+    .wrap__price {
+      display: flex;
+    }
+    .wrap {
+      padding: 0.15rem;
+    }
   }
 }
