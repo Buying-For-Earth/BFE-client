@@ -29,3 +29,36 @@
     }
   }
 }
+.product-buy__modal--container {
+  position: fixed;
+}
+.product-buy__modal {
+  position: absolute;
+  inset: 0px;
+  background-color: rgb(238, 238, 238);
+  overflow: auto;
+  outline: none;
+}
+.product-buy__modal-overlay {
+  position: fixed;
+  //   inset: 75% 0px 0px;
+  top: 75%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 1;
+}
+.close {
+  position: fixed;
+  overflow: hidden;
+  top: calc(75% - 30px);
+  left: 40%;
+  height: 30px;
+  background-color: rgb(238, 238, 238);
+  opacity: 1;
+  outline: none;
+  border: 0;
+  border-radius: 20px 20px 0 0;
+  padding-top: 5px;
+  width: 20%;
+}
