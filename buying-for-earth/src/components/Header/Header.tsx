@@ -6,7 +6,15 @@ type HeaderProps = {
 };
 
 function Header({ title }: HeaderProps) {
-  return <div className="main-header">{title === 'home' && <div className="title">바잉포어스</div>}</div>;
+  return (
+    <div className={title === 'home' ? 'header main' : 'header'}>
+      {title === 'home' ? (
+        <div className="main">바잉포어스</div>
+      ) : (
+        <div className="else">{title}</div>
+      )}
+    </div>
+  );
 }
 
 Header.defaultProps = {
