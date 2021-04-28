@@ -7,7 +7,7 @@ import Mypage from './pages/Mypage';
 import Cart from './pages/Cart';
 import Product from './pages/Product';
 import Order from './pages/Order';
-
+import Complete from './pages/Complete';
 function App() {
   return (
     <div>
@@ -19,6 +19,7 @@ function App() {
         <Route path="/cart" render={() => <Cart />} />
         <Route path="/product" render={() => <Product />} />
         <Route path="/order" render={() => <Order />} />
+        <Route path="/complete" render={() => <Complete />} />
       </Switch>
     </div>
   );
