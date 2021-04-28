@@ -7,14 +7,12 @@ import './Home.scss';
 import Header from '../../components/Header';
 import ItemList from './components/ItemList';
 import Recommend from './components/Recommend';
-import ContentHeader from '../../components/ContentHeader';
 
 function Home() {
   const images = [img1, img2, img3, img4];
   return (
     <>
       <Header />
-      <ContentHeader title={'장바구니'} />
       <div className="home--container">
         <div className="home__recommend">
           <div className="home__recommend__title title">
