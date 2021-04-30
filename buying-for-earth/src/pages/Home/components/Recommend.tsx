@@ -4,11 +4,16 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Recommend.scss';
 
-type RecommendProps = {
-  images: string[];
-};
+interface Item {
+  image: string;
+  id: number;
+}
 
-function Recommend({ images }: RecommendProps) {
+interface Props {
+  items: Item[];
+}
+
+function Recommend({ items }: Props) {
   const settings = {
     infinite: true,
     speed: 500,
@@ -22,9 +27,9 @@ function Recommend({ images }: RecommendProps) {
     <div className="recommend--container">
       <div className="recommend__item">
         <Slider {...settings}>
-          {images.map((img, i) => (
-            <div key={i}>
-              <img src={img} alt="" />
+          {items.map((item) => (
+            <div key={item.id}>
+              <img src={item.image} alt="" />
             </div>
           ))}
         </Slider>
