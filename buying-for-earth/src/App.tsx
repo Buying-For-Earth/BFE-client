@@ -1,13 +1,14 @@
-import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
-import Home from './pages/Home';
-import Search from './pages/Search';
-import Category from './pages/Category';
-import Mypage from './pages/Mypage';
-import Cart from './pages/Cart';
-import Product from './pages/Product';
-import Order from './pages/Order';
-import Complete from './pages/Complete';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Search from "./pages/Search";
+import Category from "./pages/Category";
+import Mypage from "./pages/Mypage";
+import Cart from "./pages/Cart";
+import Product from "./pages/Product";
+import Order from "./pages/Order";
+import Complete from "./pages/Complete";
+import Landing from "./pages/Landing";
 function App() {
   return (
     <div>
@@ -20,6 +21,7 @@ function App() {
         <Route path="/product" render={() => <Product />} />
         <Route path="/order" render={() => <Order />} />
         <Route path="/complete" render={() => <Complete />} />
+        <Route path="/landing" render={() => <Landing />} />
       </Switch>
     </div>
   );
