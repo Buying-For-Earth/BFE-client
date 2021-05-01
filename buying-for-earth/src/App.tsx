@@ -17,7 +17,7 @@ function App() {
         <Route path="/category" render={() => <Category />} />
         <Route path="/mypage" render={() => <Mypage />} />
         <Route path="/cart" render={() => <Cart />} />
-        <Route path="/product" render={() => <Product />} />
+        <Route path="/product/:id" render={() => <Product />} />
         <Route path="/order" render={() => <Order />} />
         <Route path="/complete" render={() => <Complete />} />
       </Switch>
