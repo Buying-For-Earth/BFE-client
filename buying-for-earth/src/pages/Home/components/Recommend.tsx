@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Recommend.scss';
+import { Link } from 'react-router-dom';
 
 interface Item {
   image: string;
@@ -29,7 +30,9 @@ function Recommend({ items }: Props) {
         <Slider {...settings}>
           {items.map((item) => (
             <div key={item.id}>
-              <img src={item.image} alt="" />
+              <Link to={`/product/${item.id}`}>
+                <img src={item.image} alt="" />
+              </Link>
             </div>
           ))}
         </Slider>
