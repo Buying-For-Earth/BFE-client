@@ -1,0 +1,11 @@
+.item-list--container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+
+  img {
+    width: 120px;
+    height: 120px;
+    padding: 16px;
+  }
+}

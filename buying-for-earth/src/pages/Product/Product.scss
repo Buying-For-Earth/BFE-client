@@ -1,0 +1,10 @@
+.product {
+  display: flex;
+  flex-direction: column;
+  .product-detail-nav--container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 36px;
+  }
+}

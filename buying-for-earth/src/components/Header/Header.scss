@@ -1,0 +1,20 @@
+.header {
+  background-color: #78be44;
+  height: 44px;
+  line-height: 44px;
+
+  .main {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .else {
+    color: white;
+    font-weight: 600;
+    margin-left: 1rem;
+  }
+}
+
+.main {
+  text-align: center;
+}
