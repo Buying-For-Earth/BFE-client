@@ -9,6 +9,9 @@ import Product from './pages/Product';
 import Order from './pages/Order';
 import Complete from './pages/Complete';
 function App() {
+  if (!localStorage.getItem('items')) {
+    localStorage.setItem('items', '[items]');
+  }
   return (
     <div>
       <Switch>
