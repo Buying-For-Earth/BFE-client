@@ -8,6 +8,7 @@ import Cart from './pages/Cart';
 import Product from './pages/Product';
 import Order from './pages/Order';
 import Complete from './pages/Complete';
+
 function App() {
   if (!localStorage.getItem('items')) {
     localStorage.setItem('items', '[items]');
@@ -24,6 +25,7 @@ function App() {
         <Route path="/product/:id" render={() => <Product />} />
         <Route path="/order" render={() => <Order />} />
         <Route path="/complete" render={() => <Complete />} />
+        <Route path="/landing" render={() => <Landing />} />
       </Switch>
     </div>
   );
