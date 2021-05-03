@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Category from './pages/Category';
@@ -19,7 +19,8 @@ function App() {
         <Route path="/search" render={() => <Search />} />
         <Route path="/category" render={() => <Category />} />
         <Route path="/mypage" render={() => <Mypage />} />
-        <Route path="/cart" render={() => <Cart />} />
+        <Route path="/cart" render={() => <Cart isCart />} />
+        <Route path="/direct/:id" render={() => <Cart />} />
         <Route path="/product/:id" render={() => <Product />} />
         <Route path="/order" render={() => <Order />} />
         <Route path="/complete" render={() => <Complete />} />

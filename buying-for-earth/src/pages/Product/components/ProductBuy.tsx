@@ -28,6 +28,7 @@ function ProductBuy({ item }: Props) {
     if (!cartList.length) {
       cartList.push(item);
       localStorage.setItem('items', JSON.stringify(cartList));
+      alert('상품이 추가되었습니다');
     } else {
       // 장바구니에 이미 상품이 들어가 있는지 확인
       for (let i = 0; i < cartList.length; i++) {
@@ -43,6 +44,7 @@ function ProductBuy({ item }: Props) {
         // 상품이 없으면 추가
         cartList.push(item);
         localStorage.setItem('items', JSON.stringify(cartList));
+        alert('상품이 추가되었습니다.');
       }
     }
   };
@@ -63,7 +65,9 @@ function ProductBuy({ item }: Props) {
           <select name="option1"></select>
           <div className="modal__bottom-btn">
             <button onClick={handleClickCart}>장바구니</button>
-            <button>구매하기</button>
+            <Link to={`/direct/${item.id}`}>
+              <button>구매하기</button>
+            </Link>
           </div>
           <button className="close" onClick={handleCloseModal}>
             <BsChevronDown size="20" />
