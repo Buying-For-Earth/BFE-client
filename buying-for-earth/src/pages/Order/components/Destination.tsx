@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 import './Destination.scss';
 
 function Destination() {
@@ -8,9 +9,12 @@ function Destination() {
       <div className="dst__header">배송지</div>
       <div className="dst__input">
         <div className="dst__input__info">
-          <div className="dst__input__label">배송지를 입력해주세요</div>
-          <IoIosArrowForward />
+          <Link to={'/order/address'}>
+            <div className="dst__input__label">배송지를 입력해주세요</div>
+            <IoIosArrowForward />
+          </Link>
         </div>
+
         <hr />
         <div className="dst__input__info">
           <div className="dst__input__label">받으실 분 정보를 입력해주세요</div>

@@ -1,6 +1,8 @@
-import React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
+import React, { useState } from 'react';
+import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 import ContentHeader from '../../components/ContentHeader';
+import Address from '../Address';
 import Destination from './components/Destination';
 import Orderer from './components/Orderer';
 import OrderItem from './components/OrderItem';
@@ -23,17 +25,38 @@ interface Props {
 
 function Order({ location }: RouteComponentProps<{}, any, Props>) {
   const { orderList } = location.state;
+  const [address, setAddress] = useState('');
+  const handleAddressInput = (address: string) => {
+    setAddress(address);
+  };
+  console.log(address);
   return (
-    <div>
-      <ContentHeader title={'주문서'} />
-      <div className="order--container">
-        <OrderItem items={orderList} />
-        <Orderer />
-        <Destination />
-        <Price />
-        <PaymentOption />
+    <BrowserRouter>
+      <div>
+        <div className="order--container">
+          <Switch>
+            <Route
+              path="/order"
+              exact
+              render={() => (
+                <>
+                  <ContentHeader title={'주문서'} />
+                  <OrderItem items={orderList} />
+                  <Orderer />
+                  <Destination />
+                  <Price />
+                  <PaymentOption />
+                </>
+              )}
+            />
+            <Route
+              path="/order/address"
+              render={() => <Address onAddressInput={handleAddressInput} />}
+            />
+          </Switch>
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
