@@ -1,5 +1,5 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Switch, Route, withRouter, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Category from './pages/Category';
@@ -8,11 +8,16 @@ import Cart from './pages/Cart';
 import Product from './pages/Product';
 import Order from './pages/Order';
 import Complete from './pages/Complete';
+import Landing from './pages/Landing';
+import Navigation from './components/Navigation';
 
 function App() {
+  const location = useLocation();
+
   if (!localStorage.getItem('items')) {
     localStorage.setItem('items', '[items]');
   }
+
   return (
     <div>
       <Switch>
@@ -27,8 +32,19 @@ function App() {
         <Route path="/complete" render={() => <Complete />} />
         <Route path="/landing" render={() => <Landing />} />
       </Switch>
+      {location.pathname === '/' ? (
+        <Navigation />
+      ) : location.pathname === '/mypage' ? (
+        <Navigation />
+      ) : location.pathname === '/search' ? (
+        <Navigation />
+      ) : location.pathname === '/category' ? (
+        <Navigation />
+      ) : location.pathname === '/cart' ? (
+        <Navigation />
+      ) : null}
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
