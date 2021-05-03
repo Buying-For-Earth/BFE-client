@@ -1,0 +1,10 @@
+.navigation--container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+
+  .mdc-tab__ripple:hover::before {
+    opacity: 0;
+  }
+}
