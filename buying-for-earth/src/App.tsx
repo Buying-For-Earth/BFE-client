@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, RouteComponentProps } from 'react-router-dom';
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Category from './pages/Category';
@@ -25,7 +25,7 @@ function App() {
         <Route path="/product/:id" render={() => <Product />} />
         <Route path="/order" render={() => <Order />} />
         <Route path="/complete" render={() => <Complete />} />
-        <Route path="/landing" render={() => <Landing />} />
+        {/* <Route path="/landing" render={() => <Landing />} /> */}
       </Switch>
     </div>
   );
