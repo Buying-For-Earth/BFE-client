@@ -14,7 +14,7 @@ function Landing() {
   //   }, []);
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: false,
     speed: 500,
     slidesToshow: 1,
@@ -65,7 +65,7 @@ function Landing() {
           </p>
         </div>
       </Slider>
-      <a href="https://url.kr/ajlows">앱 다운로드</a>
+      <a href="https://url.kr/ajlows">친환경 제품 구경하러 가기!</a>
     </div>
   );
 }
