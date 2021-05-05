@@ -3,6 +3,7 @@ import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import ContentHeader from '../../components/ContentHeader';
 import Address from '../Address';
+import Info from '../Info';
 import Destination from './components/Destination';
 import Orderer from './components/Orderer';
 import OrderItem from './components/OrderItem';
@@ -19,17 +20,27 @@ interface item {
   checked: boolean;
 }
 
+interface info {
+  name: string;
+  phone: string;
+  request: string;
+}
+
 interface Props {
   orderList: item[];
 }
 
 function Order({ location }: RouteComponentProps<{}, any, Props>) {
+  console.log(location);
   const { orderList } = location.state;
   const [address, setAddress] = useState('');
+  const [info, setInfo] = useState({});
   const handleAddressInput = (address: string) => {
     setAddress(address);
   };
-  console.log(address);
+  const handleInfoInput = (info: info) => {
+    setInfo(info);
+  };
   return (
     <BrowserRouter>
       <div>
@@ -43,7 +54,10 @@ function Order({ location }: RouteComponentProps<{}, any, Props>) {
                   <ContentHeader title={'주문서'} />
                   <OrderItem items={orderList} />
                   <Orderer />
-                  <Destination />
+                  <Destination
+                    onAddressInput={handleAddressInput}
+                    address={address}
+                  />
                   <Price />
                   <PaymentOption />
                 </>
@@ -53,6 +67,7 @@ function Order({ location }: RouteComponentProps<{}, any, Props>) {
               path="/order/address"
               render={() => <Address onAddressInput={handleAddressInput} />}
             />
+            {/* <Route path="/order/info" render={() => <Info />} /> */}
           </Switch>
         </div>
       </div>

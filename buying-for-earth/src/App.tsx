@@ -8,6 +8,7 @@ import Cart from './pages/Cart';
 import Product from './pages/Product';
 import Order from './pages/Order';
 import Complete from './pages/Complete';
+import Info from './pages/Info';
 
 function App() {
   if (!localStorage.getItem('items')) {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/product/:id" render={() => <Product />} />
         <Route path="/order" render={() => <Order />} />
         <Route path="/complete" render={() => <Complete />} />
+        <Route path="/info" component={Info} />
         {/* <Route path="/landing" render={() => <Landing />} /> */}
       </Switch>
     </div>
