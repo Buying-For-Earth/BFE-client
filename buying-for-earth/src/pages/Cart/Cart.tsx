@@ -125,7 +125,7 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
                 );
               })}
             </div>
-            <Payment price={price} />
+            <Payment price={price} orderList={items} />
           </>
         )}
       </div>

@@ -30,7 +30,8 @@ function App() {
         <Route path="/product/:id" render={() => <Product />} />
         <Route path="/order" render={() => <Order />} />
         <Route path="/complete" render={() => <Complete />} />
-        <Route path="/landing" render={() => <Landing />} />
+        <Route path="/info" component={Info} />
+        {/* <Route path="/landing" render={() => <Landing />} /> */}
       </Switch>
       {location.pathname === '/' ? (
         <Navigation />
