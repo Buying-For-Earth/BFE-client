@@ -3,6 +3,7 @@ import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import ContentHeader from '../../components/ContentHeader';
 import Address from '../Address';
+import Complete from '../Complete';
 import Info from '../Info';
 import Destination from './components/Destination';
 import Orderer from './components/Orderer';
@@ -26,21 +27,30 @@ interface info {
   request: string;
 }
 
-interface Props {
+interface locationProps {
   orderList: item[];
+  price?: number;
+  totalPrice?: number;
 }
 
-function Order({ location }: RouteComponentProps<{}, any, Props>) {
+function Order({
+  location,
+  history,
+}: RouteComponentProps<{}, any, locationProps>) {
   console.log(location);
-  const { orderList } = location.state;
+  const { orderList, price, totalPrice } = location.state;
   const [address, setAddress] = useState('');
-  const [info, setInfo] = useState({});
+  const [info, setInfo] = useState<info>();
   const handleAddressInput = (address: string) => {
     setAddress(address);
   };
   const handleInfoInput = (info: info) => {
     setInfo(info);
+    history.goBack();
   };
+  // console.log(price);
+  console.log(info);
+
   return (
     <BrowserRouter>
       <div>
@@ -57,9 +67,10 @@ function Order({ location }: RouteComponentProps<{}, any, Props>) {
                   <Destination
                     onAddressInput={handleAddressInput}
                     address={address}
+                    info={info}
                   />
-                  <Price />
-                  <PaymentOption />
+                  <Price price={price} totalPrice={totalPrice} />
+                  <PaymentOption totalPrice={totalPrice} />
                 </>
               )}
             />
@@ -67,7 +78,14 @@ function Order({ location }: RouteComponentProps<{}, any, Props>) {
               path="/order/address"
               render={() => <Address onAddressInput={handleAddressInput} />}
             />
-            {/* <Route path="/order/info" render={() => <Info />} /> */}
+            <Route
+              path="/order/info"
+              render={() => <Info onInfoInput={handleInfoInput} />}
+            />
+            <Route
+              path="/order/complete"
+              render={() => <Complete totalPrice={totalPrice} />}
+            />
           </Switch>
         </div>
       </div>
