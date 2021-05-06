@@ -10,12 +10,12 @@ import Order from './pages/Order';
 import Complete from './pages/Complete';
 import Landing from './pages/Landing';
 import Navigation from './components/Navigation';
-
+import Info from './pages/Info';
 function App() {
   const location = useLocation();
 
   if (!localStorage.getItem('items')) {
-    localStorage.setItem('items', '[items]');
+    localStorage.setItem('items', '[]');
   }
 
   return (
