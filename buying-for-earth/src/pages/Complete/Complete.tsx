@@ -2,7 +2,10 @@ import React from 'react';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import './Complete.scss';
 
-function Complete() {
+interface Props {
+  totalPrice?: number;
+}
+function Complete({ totalPrice }: Props) {
   return (
     <>
       <div className="complete-header">주문완료</div>
@@ -19,7 +22,7 @@ function Complete() {
           </div>
           <div className="confirm__price">
             <div className="confirm__price__label">결제금액</div>
-            <div className="confirm__price__value">8,500 원</div>
+            <div className="confirm__price__value">{totalPrice} 원</div>
           </div>
           <div className="confirm__detail">주문내역 상세보기</div>
         </div>

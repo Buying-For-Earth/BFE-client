@@ -2,7 +2,18 @@ import React, { useState } from 'react';
 import ContentHeader from '../../components/ContentHeader';
 import './Info.scss';
 
-function Info() {
+interface info {
+  name: string;
+  phone: string;
+  request: string;
+}
+
+interface Props {
+  onInfoInput: (info: info) => void;
+}
+
+function Info({ onInfoInput }: Props) {
+  const [info, setInfo] = useState({ name: '', phone: '', request: '문 앞' });
   const [radioCheck, setRadioCheck] = useState({
     radio1: true,
     radio2: false,
@@ -21,6 +32,13 @@ function Info() {
       }
     }
     setRadioCheck(obj);
+    console.log(e.target.value);
+    setInfo({ ...info, request: e.target.value });
+  };
+
+  const onChange = (e: any) => {
+    let { name } = e.target;
+    setInfo({ ...info, [name]: e.target.value });
   };
   return (
     <>
@@ -32,7 +50,9 @@ function Info() {
             <input
               type="text"
               className="info__value"
+              name="name"
               placeholder="이름을 입력해주세요"
+              onChange={onChange}
             />
           </div>
           <div className="info">
@@ -40,7 +60,9 @@ function Info() {
             <input
               type="text"
               className="info__value"
+              name="phone"
               placeholder="'-'없이 입력해주세요"
+              onChange={onChange}
             />
           </div>
 
@@ -52,6 +74,7 @@ function Info() {
                 name="radio1"
                 checked={radioCheck.radio1}
                 onChange={handleRadio}
+                value="문 앞"
               />
               문 앞
             </label>
@@ -61,6 +84,7 @@ function Info() {
                 name="radio2"
                 checked={radioCheck.radio2}
                 onChange={handleRadio}
+                value="경비실"
               />
               경비실
             </label>
@@ -70,6 +94,7 @@ function Info() {
                 name="radio3"
                 checked={radioCheck.radio3}
                 onChange={handleRadio}
+                value="택배함"
               />
               택배함
             </label>
@@ -79,12 +104,15 @@ function Info() {
                 name="radio4"
                 checked={radioCheck.radio4}
                 onChange={handleRadio}
+                value="기타 장소"
               />
               기타 장소
             </label>
           </div>
         </div>
-        <div className="info__save">저장</div>
+        <div className="info__save" onClick={() => onInfoInput(info)}>
+          저장
+        </div>
       </div>
     </>
   );

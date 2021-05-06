@@ -57,6 +57,8 @@ const Payment = ({ price, orderList }: Props) => {
           pathname: '/order',
           state: {
             orderList,
+            price,
+            totalPrice,
           },
         }}
       >
