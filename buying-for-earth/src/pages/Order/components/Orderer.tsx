@@ -2,9 +2,17 @@ import React, { useState } from 'react';
 import './Orderer.scss';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
-function Orderer() {
-  const [toggle, setToggle] = useState(false);
+interface orderer {
+  name: string;
+  phone: string;
+  email: string;
+}
 
+interface Props {
+  onOrdererInput: (e: any) => void;
+}
+function Orderer({ onOrdererInput }: Props) {
+  const [toggle, setToggle] = useState(false);
   const handleToggle = () => {
     setToggle(!toggle);
   };
@@ -26,6 +34,8 @@ function Orderer() {
             type="text"
             className="orderer__info__value"
             placeholder="이름을 입력해주세요"
+            name="name"
+            onChange={onOrdererInput}
           />
         </div>
         <div className="orderer__info">
@@ -34,6 +44,8 @@ function Orderer() {
             type="text"
             className="orderer__info__value"
             placeholder="'-' 없이 입력해주세요"
+            name="phone"
+            onChange={onOrdererInput}
           />
         </div>
         <div className="orderer__info">
@@ -42,6 +54,8 @@ function Orderer() {
             type="text"
             className="orderer__info__value"
             placeholder="이메일을 입력해주세요"
+            name="email"
+            onChange={onOrdererInput}
           />
         </div>
       </div>
