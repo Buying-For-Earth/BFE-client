@@ -3,25 +3,22 @@ import { IoIosArrowForward } from 'react-icons/io';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import './Destination.scss';
 
-interface info {
+interface recipient {
   name: string;
   phone: string;
   request: string;
 }
 
 interface Props {
-  onAddressInput: (address: string) => void;
   address?: string | null;
-  info?: info | null;
+  recipient?: recipient | null;
 }
 
 function Destination({
   history,
-  onAddressInput,
   address,
-  info,
+  recipient,
 }: RouteComponentProps & Props) {
-  console.log(info);
   return (
     <div className="dst--container">
       <div className="dst__header">배송지</div>
@@ -45,13 +42,13 @@ function Destination({
             history.push('/order/info');
           }}
         >
-          <div className={info ? 'dst__input__label' : 'empty'}>
-            {info ? (
+          <div className={recipient ? 'dst__input__label' : 'empty'}>
+            {recipient ? (
               <>
                 <div>
-                  {info.name}, {info.phone}
+                  {recipient.name}, {recipient.phone}
                 </div>
-                <div>{info.request}</div>
+                <div>{recipient.request}</div>
               </>
             ) : (
               '받으실 분 정보를 입력해주세요'
