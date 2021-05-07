@@ -100,6 +100,8 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
     }
     if (price > 30000) {
       setTotalPrice(price);
+    } else if (price <= 0) {
+      setTotalPrice(0);
     } else {
       setTotalPrice(price + 3000);
     }
