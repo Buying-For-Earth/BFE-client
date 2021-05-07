@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import ContentHeader from '../../components/ContentHeader';
@@ -39,11 +39,24 @@ interface locationProps {
   totalPrice?: number;
 }
 
+interface Props {
+  orderList: item[];
+  price?: number;
+  totalPrice?: number;
+}
+
 function Order({
   location,
   history,
-}: RouteComponentProps<{}, any, locationProps>) {
-  const { orderList, price, totalPrice } = location.state;
+  match,
+  orderList,
+  price,
+  totalPrice,
+}: RouteComponentProps & Props) {
+  // const [orderList, setOrderList] = useState<item[]>([]);
+  // const [price, setPrice] = useState<number>();
+  // const [totalPrice, setTotalPrice] = useState<number>();
+  // console.log(match.url + '/order');
   const [address, setAddress] = useState('');
   const [orderer, setOrderer] = useState<orderer>({
     name: '',
@@ -63,39 +76,41 @@ function Order({
     history.goBack();
   };
 
+  // useEffect(() => {
+  //   setOrderList(location.state.orderList);
+  //   setPrice(location.state.price);
+  //   setTotalPrice(location.state.totalPrice);
+  // }, [orderList]);
+
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route
-          path="/order"
-          exact
-          render={() => (
-            <div className="order--container">
-              <ContentHeader title={'주문서'} />
-              <OrderItem items={orderList} />
-              <Orderer onOrdererInput={handleOrdererInput} />
-              <Destination address={address} recipient={recipient} />
-              <Price price={price} totalPrice={totalPrice} />
-              <PaymentOption totalPrice={totalPrice} />
-            </div>
-          )}
-        />
-        <Route
-          path="/order/address"
-          render={() => <Address onAddressInput={handleAddressInput} />}
-        />
-        <Route
-          path="/order/info"
-          render={() => <Info onInfoInput={handleRecipientInput} />}
-        />
-        <Route
-          path="/order/complete"
-          render={() => (
-            <Complete totalPrice={totalPrice} name={orderer.name} />
-          )}
-        />
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route
+        path={`${match.url}`}
+        exact
+        render={() => (
+          <div className="order--container">
+            <ContentHeader title={'주문서'} />
+            <OrderItem items={orderList} />
+            <Orderer onOrdererInput={handleOrdererInput} />
+            <Destination address={address} recipient={recipient} />
+            <Price price={price} totalPrice={totalPrice} />
+            <PaymentOption totalPrice={totalPrice} />
+          </div>
+        )}
+      />
+      <Route
+        path={`${match.url}/address`}
+        render={() => <Address onAddressInput={handleAddressInput} />}
+      />
+      <Route
+        path={`${match.url}/info`}
+        render={() => <Info onInfoInput={handleRecipientInput} />}
+      />
+      <Route
+        path={`${match.url}/complete`}
+        render={() => <Complete totalPrice={totalPrice} name={orderer.name} />}
+      />
+    </Switch>
   );
 }
 

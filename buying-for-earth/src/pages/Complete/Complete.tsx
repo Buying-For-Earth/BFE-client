@@ -37,11 +37,9 @@ function Complete({ name, totalPrice, history }: Props & RouteComponentProps) {
         </div>
       </div>
       <div className="wrap">
-        <a href="/">
-          <div className="home-btn" onClick={() => history.push('/')}>
-            홈으로 이동
-          </div>
-        </a>
+        <div className="home-btn" onClick={() => history.push('/')}>
+          홈으로 이동
+        </div>
       </div>
     </div>
   );

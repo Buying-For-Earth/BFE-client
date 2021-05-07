@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RouteComponentProps, Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import './Payment.scss';
 
 interface item {
@@ -13,20 +13,18 @@ interface item {
 
 interface Props {
   price: number;
-  orderList: item[];
+  totalPrice: number;
 }
 
-const Payment = ({ price, orderList }: Props) => {
+const Payment = ({ price, totalPrice }: Props) => {
   const [fee, setFee] = useState(true);
-  const [totalPrice, setTotalPrice] = useState(0);
-
+  const match = useRouteMatch();
+  console.log(match);
   useEffect(() => {
     // 총 상품금액이 30000원 이상일 때 배송비 추가
     if (price >= 30000) {
-      setTotalPrice(price);
       setFee(false);
     } else {
-      setTotalPrice(price + 3000);
       setFee(true);
     }
   }, [price]);
@@ -52,16 +50,7 @@ const Payment = ({ price, orderList }: Props) => {
         <div className="payment__price__label">결제예정금액</div>
         <div className="payment__price__value">{totalPrice} 원</div>
       </div>
-      <Link
-        to={{
-          pathname: '/order',
-          state: {
-            orderList,
-            price,
-            totalPrice,
-          },
-        }}
-      >
+      <Link to={`${match.url}/order`}>
         <div className="payment__btn">{totalPrice}원 주문하기</div>
       </Link>
     </div>

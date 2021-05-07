@@ -17,33 +17,45 @@ interface item {
 
 interface Props {
   item: item;
+  isCart?: boolean;
   onIncrease: (id: number) => void;
   onDecrease: (id: number) => void;
   onToggle: (id: number) => void;
   onRemove: (id: number) => void;
 }
 
-function CartItem({ item, onIncrease, onDecrease, onToggle, onRemove }: Props) {
+function CartItem({
+  item,
+  isCart,
+  onIncrease,
+  onDecrease,
+  onToggle,
+  onRemove,
+}: Props) {
   return (
     <div className="cart-item--container">
       <div className="cart-item__top">
-        <div
-          className="cart-item__top__checkbox"
-          onClick={() => onToggle(item.id)}
-        >
-          {item.checked ? (
-            <AiFillCheckCircle color="#78be44" />
-          ) : (
-            <AiOutlineCheckCircle />
-          )}
-        </div>
+        {isCart && (
+          <div
+            className="cart-item__top__checkbox"
+            onClick={() => onToggle(item.id)}
+          >
+            {item.checked ? (
+              <AiFillCheckCircle color="#78be44" />
+            ) : (
+              <AiOutlineCheckCircle />
+            )}
+          </div>
+        )}
         <div className="cart-item__top__name">{item.itemName}</div>
-        <div
-          className="cart-item__top__remove"
-          onClick={() => onRemove(item.id)}
-        >
-          <AiOutlineClose />
-        </div>
+        {isCart && (
+          <div
+            className="cart-item__top__remove"
+            onClick={() => onRemove(item.id)}
+          >
+            <AiOutlineClose />
+          </div>
+        )}
       </div>
       <div className="cart-item__info">
         <img className="cart-item__info__image" src={item.image} alt="" />

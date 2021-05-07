@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { Route, RouteComponentProps, withRouter } from 'react-router';
 import ContentHeader from '../../components/ContentHeader';
 import './Cart.scss';
 import CartItem from './components/CartItem';
 import Empty from './components/Empty';
 import Payment from './components/Payment';
 import { fakeData } from '../../fakeData';
+import Order from '../Order';
 
 interface item {
   id: number;
@@ -28,7 +29,7 @@ interface Props {
 function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
   const [items, setItems] = useState<item[]>([]);
   const [price, setPrice] = useState(0);
-
+  const [totalPrice, setTotalPrice] = useState(0);
   const handleIncrease = (id: number) => {
     // 상품 수량 +
     console.log('increase');
@@ -97,38 +98,80 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
         if (item.checked) price += item.price * item.amount;
       });
     }
+    if (price > 30000) {
+      setTotalPrice(price);
+    } else {
+      setTotalPrice(price + 3000);
+    }
     setPrice(price);
   }, [items]);
 
   return (
     <>
-      {isCart ? (
-        <ContentHeader title={'장바구니'} />
-      ) : (
-        <ContentHeader title={'바로구매'} />
-      )}
-      <div className="cart--container">
-        {!items.length ? (
-          <Empty />
-        ) : (
+      <Route
+        path="/direct/:id"
+        exact
+        render={() => (
           <>
-            <div className="cart__list">
-              {items.map((item) => {
-                return (
-                  <CartItem
-                    item={item}
-                    onIncrease={handleIncrease}
-                    onDecrease={handleDecrease}
-                    onToggle={handleToggle}
-                    onRemove={handleRemove}
-                  />
-                );
-              })}
+            <ContentHeader title={'바로구매'} />
+            <div className="cart--container">
+              <div className="cart__list">
+                {items.map((item) => {
+                  return (
+                    <CartItem
+                      item={item}
+                      onIncrease={handleIncrease}
+                      onDecrease={handleDecrease}
+                      onRemove={handleRemove}
+                      onToggle={handleToggle}
+                    />
+                  );
+                })}
+              </div>
             </div>
-            <Payment price={price} orderList={items} />
+            <Payment price={price} totalPrice={totalPrice} />
           </>
         )}
-      </div>
+      />
+      <Route
+        path="/cart"
+        exact
+        render={() => (
+          <>
+            <ContentHeader title={'장바구니'} />
+
+            <div className="cart--container">
+              {!items.length ? (
+                <Empty />
+              ) : (
+                <>
+                  <div className="cart__list">
+                    {items.map((item) => {
+                      return (
+                        <CartItem
+                          item={item}
+                          isCart
+                          onIncrease={handleIncrease}
+                          onDecrease={handleDecrease}
+                          onToggle={handleToggle}
+                          onRemove={handleRemove}
+                        />
+                      );
+                    })}
+                  </div>
+                  <Payment price={price} totalPrice={totalPrice} />
+                </>
+              )}
+            </div>
+          </>
+        )}
+      />
+      <Route
+        path={`${match.url}/order`}
+        render={() => (
+          <Order orderList={items} price={price} totalPrice={totalPrice} />
+        )}
+      />
     </>
   );
 }
