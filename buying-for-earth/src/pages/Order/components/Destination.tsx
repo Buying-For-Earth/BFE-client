@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import {
+  RouteComponentProps,
+  useRouteMatch,
+  withRouter,
+} from 'react-router-dom';
 import './Destination.scss';
 
 interface recipient {
@@ -19,6 +23,7 @@ function Destination({
   address,
   recipient,
 }: RouteComponentProps & Props) {
+  const match = useRouteMatch();
   return (
     <div className="dst--container">
       <div className="dst__header">배송지</div>
@@ -26,7 +31,7 @@ function Destination({
         <div
           className="dst__input__info"
           onClick={() => {
-            history.push('/order/address');
+            history.push(`${match.url}/address`);
           }}
         >
           <div className={address ? 'dst__input__label' : 'empty'}>
@@ -39,7 +44,7 @@ function Destination({
         <div
           className="dst__input__info"
           onClick={() => {
-            history.push('/order/info');
+            history.push(`${match.url}/info`);
           }}
         >
           <div className={recipient ? 'dst__input__label' : 'empty'}>
