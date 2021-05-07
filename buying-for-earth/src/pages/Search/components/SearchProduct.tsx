@@ -1,13 +1,38 @@
-import React from "react";
-import { FiSearch } from "react-icons/fi";
-import "./SearchProduct.scss";
+import React, { useState } from 'react';
+import { FiSearch } from 'react-icons/fi';
+import './SearchProduct.scss';
 
-function SearchProduct() {
+type SearchFormProps = {
+  onSubmit: (value: string) => void;
+};
+
+function SearchProduct({ onSubmit }: SearchFormProps) {
+  const [search_inputText, setSearch_inputText] = useState('');
+
+  const value: string = search_inputText;
+
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    e.preventDefault();
+    setSearch_inputText(e.target.value);
+  }
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    onSubmit(search_inputText);
+  }
+
   return (
     <div className="search-bar--container">
       <div className="search-bar">
-        <FiSearch size="20" />
-        <input type="search" placeholder="검색어를 입력해주세요" />
+        <form onSubmit={handleSubmit}>
+          <FiSearch size="20" />
+          <input
+            type="search"
+            value={value}
+            placeholder="검색어를 입력해주세요"
+            onChange={onChange}
+          />
+        </form>
       </div>
     </div>
   );

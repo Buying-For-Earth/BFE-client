@@ -10,6 +10,7 @@ import Order from './pages/Order';
 import Complete from './pages/Complete';
 import Landing from './pages/Landing';
 import Navigation from './components/Navigation';
+import Info from './pages/Info';
 
 function App() {
   const location = useLocation();
@@ -31,7 +32,7 @@ function App() {
         <Route path="/order" render={() => <Order />} />
         <Route path="/complete" render={() => <Complete />} />
         <Route path="/info" component={Info} />
-        {/* <Route path="/landing" render={() => <Landing />} /> */}
+        <Route path="/landing" render={() => <Landing />} />
       </Switch>
       {location.pathname === '/' ? (
         <Navigation />
