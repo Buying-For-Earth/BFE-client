@@ -22,7 +22,7 @@ const Payment = ({ price, totalPrice }: Props) => {
   console.log(match);
   useEffect(() => {
     // 총 상품금액이 30000원 이상일 때 배송비 추가
-    if (price >= 30000) {
+    if (price >= 30000 || price <= 0) {
       setFee(false);
     } else {
       setFee(true);

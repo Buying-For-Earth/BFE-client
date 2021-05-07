@@ -3,6 +3,8 @@ import {
   AiFillCheckCircle,
   AiOutlineCheckCircle,
   AiOutlineClose,
+  AiOutlineMinus,
+  AiOutlinePlus,
 } from 'react-icons/ai';
 import './CartItem.scss';
 
@@ -41,7 +43,7 @@ function CartItem({
             onClick={() => onToggle(item.id)}
           >
             {item.checked ? (
-              <AiFillCheckCircle color="#78be44" />
+              <AiFillCheckCircle color="#34cdab" />
             ) : (
               <AiOutlineCheckCircle />
             )}
@@ -62,9 +64,19 @@ function CartItem({
         <div className="cart-item__info__wrap">
           <div className="wrap__price">{item.price}원</div>
           <div className="wrap__amount">
-            <button onClick={() => onDecrease(item.id)}>-</button>
+            <button
+              className="decrease-btn"
+              onClick={() => onDecrease(item.id)}
+            >
+              <AiOutlineMinus />
+            </button>
             <input type="text" value={item.amount} />
-            <button onClick={() => onIncrease(item.id)}>+</button>
+            <button
+              className="increase-btn"
+              onClick={() => onIncrease(item.id)}
+            >
+              <AiOutlinePlus />
+            </button>
           </div>
         </div>
       </div>
