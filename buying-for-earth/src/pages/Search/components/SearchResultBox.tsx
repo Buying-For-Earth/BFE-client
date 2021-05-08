@@ -15,7 +15,13 @@ type SearchResultBoxProps = {
 // </Link>
 function SearchResultBox({ data }: SearchResultBoxProps) {
   return (
-    <Link className="search-result-box--container" to={`/product/${data.id}`}>
+    <Link
+      className="search-result-box--container"
+      to={{
+        pathname: `/product/${data.id}`,
+        state: { data: data },
+      }}
+    >
       <img src={data.thumbnail} alt="" className="search-result-box__image" />
 
       <div className="search-result-box__name">{data.name}</div>
