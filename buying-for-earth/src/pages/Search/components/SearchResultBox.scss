@@ -1,17 +1,24 @@
 .search-result-box--container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  text-decoration: none;
+  color: black;
+  margin: 15px 0px;
+
   .search-result-box__image {
-    background-color: black;
     border: 1px solid;
     width: 100%;
     margin-bottom: 15px;
+    overflow: hidden;
+    color: transparent;
   }
   .search-result-box__image::after {
-    content: "";
+    content: '';
     display: block;
     padding-bottom: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .search-result-box__name {
     font-size: 14px;

@@ -11,6 +11,7 @@ import Complete from './pages/Complete';
 import Landing from './pages/Landing';
 import Navigation from './components/Navigation';
 import Info from './pages/Info';
+
 function App() {
   const location = useLocation();
 
@@ -29,7 +30,9 @@ function App() {
         <Route path="/direct/:id" render={() => <Cart />} />
         <Route path="/product/:id" render={() => <Product />} />
         <Route path="/complete" render={() => <Complete />} />
-        {/* <Route path="/landing" render={() => <Landing />} /> */}
+        <Route path="/info" component={Info} />
+        <Route path="/landing" render={() => <Landing />} />
+
       </Switch>
       {location.pathname === '/' ? (
         <Navigation />
