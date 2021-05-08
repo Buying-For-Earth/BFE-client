@@ -21,6 +21,7 @@ function SearchResultBox({ data }: SearchResultBoxProps) {
         pathname: `/product/${data.id}`,
         state: { data: data },
       }}
+      replace
     >
       <img src={data.thumbnail} alt="" className="search-result-box__image" />
 

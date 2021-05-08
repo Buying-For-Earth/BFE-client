@@ -1,5 +1,7 @@
 import React from 'react';
 import SearchResultBox from './SearchResultBox';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../modules';
 
 interface Product {
   thumbnail: string;
@@ -8,26 +10,27 @@ interface Product {
   id: number;
 }
 
-type SearchResultProps = {
-  //search: Search;
-  list: [] | Product[];
-};
+function SearchResult() {
+  const { search } = useSelector((state: RootState) => state);
 
-function SearchResult({ list }: SearchResultProps) {
   function emptyList() {
-    if (list.length === 0) {
+    if (search.products.length === 0) {
       return <div className="search-result__empty">검색 결과가 없습니다.</div>;
     }
   }
   return (
     <div className="search-result--container">
       <div className="search-result__total">
-        총 <span className="search-result__total__number">{list.length}</span>개
+        총{' '}
+        <span className="search-result__total__number">
+          {search.products.length}
+        </span>
+        개
       </div>
       {emptyList()}
       <div className="search-result-list">
         <div className="search-result__product">
-          {list.map((data: Product, index: number) => {
+          {search.products.map((data: Product, index: number) => {
             return <SearchResultBox key={index} data={data} />;
           })}
         </div>
