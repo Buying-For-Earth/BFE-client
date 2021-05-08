@@ -2,8 +2,13 @@ import React from 'react';
 import './PaymentOption.scss';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { BsCreditCard } from 'react-icons/bs';
+import { Link, useRouteMatch } from 'react-router-dom';
 
-function PaymentOption() {
+interface Props {
+  totalPrice?: number;
+}
+function PaymentOption({ totalPrice }: Props) {
+  const match = useRouteMatch();
   return (
     <div className="payment-option--container">
       <div className="payment-option__header">결제수단</div>
@@ -23,7 +28,9 @@ function PaymentOption() {
           <IoIosArrowDown />
         </div>
       </div>
-      <div className="payment-btn">8,500원 결제하기</div>
+      <Link to={`${match.url}/complete`}>
+        <div className="payment-btn">{totalPrice}원 결제하기</div>
+      </Link>
     </div>
   );
 }
