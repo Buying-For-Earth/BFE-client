@@ -16,7 +16,7 @@ function App() {
   const location = useLocation();
 
   if (!localStorage.getItem('items')) {
-    localStorage.setItem('items', '[items]');
+    localStorage.setItem('items', '[]');
   }
 
   return (
@@ -29,10 +29,10 @@ function App() {
         <Route path="/cart" render={() => <Cart isCart />} />
         <Route path="/direct/:id" render={() => <Cart />} />
         <Route path="/product/:id" render={() => <Product />} />
-        <Route path="/order" render={() => <Order />} />
         <Route path="/complete" render={() => <Complete />} />
         <Route path="/info" component={Info} />
         <Route path="/landing" render={() => <Landing />} />
+
       </Switch>
       {location.pathname === '/' ? (
         <Navigation />

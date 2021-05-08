@@ -1,31 +1,31 @@
-.complete-header {
-  text-align: center;
-  font-size: 1.25rem;
-  height: 2rem;
-  line-height: 2rem;
-}
 .complete--container {
-  height: 95vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: rgb(238, 238, 238);
+  .complete-header {
+    text-align: center;
+    font-size: 1.25rem;
+    height: 3rem;
+    line-height: 3rem;
+    background-color: white;
+  }
   .complete__confirm {
     display: flex;
     flex-direction: column;
     align-items: center;
-    // min-height: 70%;
     background-color: white;
     margin: 1rem;
     .confirm__icon {
       font-size: 4rem;
-      color: rgb(120, 190, 68);
+      color: #34cdab;
+      line-height: 1rem;
       padding: 1rem;
     }
     .confirm__img {
-      width: 80px;
-      height: 80px;
+      width: 90px;
+      height: 90px;
       box-sizing: border-box;
-      background-color: rgb(120, 190, 68);
       margin-bottom: 1rem;
     }
     .confirm__msg {
@@ -50,12 +50,14 @@
     }
     .confirm__detail {
       box-sizing: border-box;
-      border: 1px solid rgb(181, 179, 179);
-      width: 80%;
-      height: 46px;
+      display: flex;
+      border: 1.5px solid rgb(181, 179, 179);
+      width: 90%;
+      height: 5rem;
       color: rgb(9, 9, 9);
       text-align: center;
-      line-height: 46px;
+      justify-content: center;
+      align-items: center;
       border-radius: 0.5rem;
       margin-bottom: 1rem;
     }
@@ -63,20 +65,21 @@
   .wrap {
     flex: 1;
     background-color: white;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-  }
-  .home-btn {
-    box-sizing: border-box;
-    background-color: rgb(120, 190, 68);
-    margin: 1rem;
-    height: 46px;
-    color: white;
-    text-align: center;
-    line-height: 46px;
-    font-weight: 700;
-    border-radius: 0.5rem;
-    width: 100%;
+    position: relative;
+    .home-btn {
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      right: 10%;
+      box-sizing: border-box;
+      background-color: #34cdab;
+      margin: 1rem;
+      height: 46px;
+      color: white;
+      text-align: center;
+      line-height: 46px;
+      font-weight: 700;
+      border-radius: 0.5rem;
+    }
   }
 }
