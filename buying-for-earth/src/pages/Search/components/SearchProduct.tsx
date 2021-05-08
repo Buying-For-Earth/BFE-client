@@ -1,23 +1,15 @@
 import axios from 'axios';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { FiSearch } from 'react-icons/fi';
 import { IoClose } from 'react-icons/io5';
+import { saveList } from '../../../modules/search';
 import './SearchProduct.scss';
 
-interface Product {
-  thumbnail: string;
-  name: string;
-  price: number;
-  id: number;
-}
-
-type SearchProductProps = {
-  onInsert: (text: string) => void;
-  setList: Dispatch<SetStateAction<Product[] | []>>;
-};
-
-function SearchProduct({ onInsert, setList }: SearchProductProps) {
+function SearchProduct() {
   const [value, setValue] = useState('');
+
+  const dispatch = useDispatch();
 
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     setValue(e.target.value);
@@ -42,9 +34,11 @@ function SearchProduct({ onInsert, setList }: SearchProductProps) {
         }
       )
       .then((response) => {
-        setList(response.data.results);
+        dispatch(saveList(response.data.results));
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    onInsert(value);
   }
 
   return (

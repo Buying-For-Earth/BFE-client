@@ -1,34 +1,30 @@
-// Action type
-const ADD_SEARCH = 'search/ADD_SEARCH' as const;
+import {createSlice} from '@reduxjs/toolkit';
 
+interface Product {
+    thumbnail: string;
+    name: string;
+    price: number;
+    id: number;
+  }
 
-// Action function
-export const addInsert = (text: string) => ({
-    type: ADD_SEARCH,
-    payload: text
-});
+interface SearchState {
+    products: Product[] | []
+}
 
-type SearchAction = | ReturnType<typeof addInsert>
-
-export type Search = {
-    text: string;
-};
-
-export type SearchState = Search;
-
-// initialState
 const initialState: SearchState = {
-    text: ""
-};
+    products: []
+}
 
-// reducer
-function search(state: SearchState = initialState, action: SearchAction): SearchState 
-{
-    switch (action.type) {
-        case ADD_SEARCH:
-            return {text: action.payload};
-        default:
-            return state;
+export const searchSlice = createSlice({
+    name: 'search',
+    initialState,
+    reducers: {
+        saveList: (state, action) => {
+            state.products = action.payload
+        },
     }
-};
-export default search;
+})
+
+export const {saveList} = searchSlice.actions
+
+export default searchSlice.reducer
