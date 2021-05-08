@@ -1,14 +1,29 @@
-import React from "react";
-import "./SearchResultBox.scss";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './SearchResultBox.scss';
 
-function SearchResultBox() {
+interface Product {
+  thumbnail: string;
+  name: string;
+  price: number;
+  id: number;
+}
+
+type SearchResultBoxProps = {
+  data: Product;
+};
+// </Link>
+function SearchResultBox({ data }: SearchResultBoxProps) {
   return (
-    <div className="search-result-box--container">
-      <div className="search-result-box__image"></div>
-      <div className="search-result-box__name">{"친환경 대나무 칫솔"}</div>
-      <div className="search-result-box__discount-price">{"1,100"}원</div>
-      <div className="search-result-box__price">{"1,300"}원</div>
-    </div>
+    <Link className="search-result-box--container" to={`/product/${data.id}`}>
+      <img src={data.thumbnail} alt="" className="search-result-box__image" />
+
+      <div className="search-result-box__name">{data.name}</div>
+      <div className="search-result-box__discount-price">
+        {data.price * 0.8}원
+      </div>
+      <div className="search-result-box__price">{data.price}원</div>
+    </Link>
   );
 }
 
