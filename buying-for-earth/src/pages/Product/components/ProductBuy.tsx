@@ -5,6 +5,7 @@ import { BsChevronDown } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addItems } from '../../../modules/cart';
+import { BsPlus, BsDash } from 'react-icons/bs';
 
 interface DetailText {
   '제조사/판매사'?: string;
@@ -116,18 +117,23 @@ function ProductBuy({ item, id }: ProductBuyProps) {
           contentLabel="content Label"
           className="product-buy__modal"
           overlayClassName="product-buy__modal-overlay"
+          ariaHideApp={false}
         >
           {item.options.map((ele, index) => {
             if (ele.input_option.type === 'select') {
               let optionValue: JSX.Element[] = ele.input_option.option_list!.map(
-                (ele) => (
-                  <option value={ele} key="index">
+                (ele, idx) => (
+                  <option value={ele} key={idx}>
                     {ele}
                   </option>
                 )
               );
               return (
-                <select onChange={(e) => selectOption(e, index)} key={index}>
+                <select
+                  className="modal__select"
+                  onChange={(e) => selectOption(e, index)}
+                  key={index}
+                >
                   {optionValue}
                 </select>
               );
@@ -144,15 +150,21 @@ function ProductBuy({ item, id }: ProductBuyProps) {
                   }
                   return setCount(count - 1);
                 }}
-              ></button>
+              >
+                <BsDash />
+              </button>
               <div>{count}</div>
               <button
                 className="modal__count__increase"
                 onClick={() => setCount(count + 1)}
-              ></button>
+              >
+                <BsPlus />
+              </button>
             </div>
-            <div className="total__name">총 금액</div>
-            <div className="total__price">{count * item.price * 0.8}</div>
+            <div className="total--container">
+              <div className="total__name">총 금액</div>
+              <div className="total__price">{count * item.price * 0.8}원</div>
+            </div>
           </div>
           <div className="modal__bottom-btn">
             <button onClick={handleClickCart}>장바구니</button>
