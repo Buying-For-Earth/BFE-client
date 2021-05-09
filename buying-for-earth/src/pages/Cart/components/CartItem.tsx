@@ -10,8 +10,8 @@ import './CartItem.scss';
 
 interface item {
   id: number;
-  itemName: string;
-  image: string;
+  name: string;
+  thumbnail: string;
   price: number;
   checked: boolean;
   amount: number;
@@ -49,7 +49,7 @@ function CartItem({
             )}
           </div>
         )}
-        <div className="cart-item__top__name">{item.itemName}</div>
+        <div className="cart-item__top__name">{item.name}</div>
         {isCart && (
           <div
             className="cart-item__top__remove"
@@ -60,7 +60,7 @@ function CartItem({
         )}
       </div>
       <div className="cart-item__info">
-        <img className="cart-item__info__image" src={item.image} alt="" />
+        <img className="cart-item__info__image" src={item.thumbnail} alt="" />
         <div className="cart-item__info__wrap">
           <div className="wrap__price">{item.price}원</div>
           <div className="wrap__amount">

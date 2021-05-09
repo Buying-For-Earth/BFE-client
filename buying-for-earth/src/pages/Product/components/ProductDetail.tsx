@@ -18,7 +18,7 @@ interface Options {
   input_option: {
     name: string;
     type: string;
-    option_list?: string;
+    option_list?: string[];
   };
 }
 
@@ -47,26 +47,28 @@ function ProductDetail({ item }: ProductDetailProps) {
       </div>
       <div className="product-detail__detailText">
         <div className="detailText__key">
-          {item.detail.text.map((ele) => {
+          {item.detail.text.map((ele, index) => {
             return (
-              <div className="detailText__column">
+              <div className="detailText__column" key={index}>
                 <span>{Object.keys(ele)}</span>
               </div>
             );
           })}
         </div>
         <div>
-          {item.detail.text.map((ele) => {
+          {item.detail.text.map((ele, index) => {
             return (
-              <div className="detailText__column">
+              <div className="detailText__column" key={index}>
                 <span>{Object.values(ele)}</span>
               </div>
             );
           })}
         </div>
       </div>
-      {item.detail.url.map((ele) => {
-        return <img className="product-detail__image" src={ele} alt="" />;
+      {item.detail.url.map((ele, index) => {
+        return (
+          <img className="product-detail__image" src={ele} alt="" key={index} />
+        );
       })}
     </div>
   );

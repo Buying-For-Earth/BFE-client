@@ -4,8 +4,8 @@ import './Payment.scss';
 
 interface item {
   id: number;
-  itemName: string;
-  image: string;
+  name: string;
+  thumbnail: string;
   price: number;
   amount: number;
   checked: boolean;
@@ -19,7 +19,6 @@ interface Props {
 const Payment = ({ price, totalPrice }: Props) => {
   const [fee, setFee] = useState(true);
   const match = useRouteMatch();
-  console.log(match);
   useEffect(() => {
     // 총 상품금액이 30000원 이상일 때 배송비 추가
     if (price >= 30000 || price <= 0) {

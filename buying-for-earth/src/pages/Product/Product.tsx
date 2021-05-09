@@ -10,7 +10,6 @@ import './Product.scss';
 interface MatchParams {
   id: string;
 }
-
 interface DetailText {
   '제조사/판매사'?: string;
   '친환경 인증 제품'?: string;
@@ -28,11 +27,11 @@ interface Options {
   input_option: {
     name: string;
     type: string;
-    option_list?: string;
+    option_list?: string[];
   };
 }
 
-interface itemProps {
+interface ItemProps {
   thumbnail: string;
   name: string;
   category: string;
@@ -42,10 +41,10 @@ interface itemProps {
 }
 
 function Product({ match }: RouteComponentProps<MatchParams>) {
-  const [item, setItem] = useState<itemProps>({
+  const [item, setItem] = useState<ItemProps>({
+    category: '',
     thumbnail: '',
     name: '',
-    category: '',
     price: 0,
     detail: { text: [{ '제조사/판매사': '' }], url: [''] },
     options: [

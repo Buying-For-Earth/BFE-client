@@ -2,20 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Route, RouteComponentProps, withRouter } from 'react-router';
 import ContentHeader from '../../components/ContentHeader';
 import './Cart.scss';
+import { increase, decrease, remove, toggle } from './../../modules/cart';
+import { useDispatch, useSelector } from 'react-redux';
 import CartItem from './components/CartItem';
 import Empty from './components/Empty';
 import Payment from './components/Payment';
-import { fakeData } from '../../fakeData';
 import Order from '../Order';
-
-interface item {
-  id: number;
-  itemName: string;
-  image: string;
-  price: number;
-  amount: number;
-  checked: boolean;
-}
+import { RootState } from '../../modules';
 
 interface MatchParams {
   id: string;
@@ -27,69 +20,29 @@ interface Props {
 
 // 장바구니로 들어온 경우 isCart=true 바로구매로 들어오면 isCart=false
 function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
-  const [items, setItems] = useState<item[]>([]);
+  const items = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch();
   const [price, setPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const handleIncrease = (id: number) => {
+  const onIncrease = (id: number) => {
     // 상품 수량 +
-    console.log('increase');
-    const update: item[] = items.map((item: item) =>
-      item.id === id ? { ...item, amount: item.amount + 1 } : item
-    );
-    setItems(update);
+    dispatch(increase(id));
   };
 
-  const handleDecrease = (id: number) => {
+  const onDecrease = (id: number) => {
     // 상품 수량 -
-    console.log('decrease');
-    const update = items.map((item: item) =>
-      item.id === id
-        ? item.amount > 1
-          ? { ...item, amount: item.amount - 1 }
-          : item
-        : item
-    );
-    setItems(update);
+    dispatch(decrease(id));
   };
 
-  const handleToggle = (id: number) => {
+  const onToggle = (id: number) => {
     // 장바구니에서 결제할 상품 선택
-    console.log('toggle');
-    const update = items.map((item) =>
-      item.id === id ? { ...item, checked: !item.checked } : item
-    );
-    setItems(update);
+    dispatch(toggle(id));
   };
 
-  const handleRemove = (id: number) => {
+  const onRemove = (id: number) => {
     // 장바구니 상품 삭제
-    console.log('remove');
-    const update = items.filter((item) => {
-      return item.id !== id;
-    });
-    setItems(update);
-    localStorage.removeItem('items');
-    localStorage.setItem('items', JSON.stringify(update));
+    dispatch(remove(id));
   };
-
-  useEffect(() => {
-    let items;
-    if (isCart) {
-      items = JSON.parse(String(localStorage.getItem('items')));
-      items = items.map((item: item) => ({
-        ...item,
-        amount: 1,
-        checked: true,
-      }));
-    } else {
-      for (let item of fakeData) {
-        if (item.id === Number(match.params.id)) {
-          items = [{ ...item, amount: 1, checked: true }];
-        }
-      }
-    }
-    setItems(items);
-  }, []);
 
   useEffect(() => {
     let price = 0;
@@ -122,10 +75,10 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
                   return (
                     <CartItem
                       item={item}
-                      onIncrease={handleIncrease}
-                      onDecrease={handleDecrease}
-                      onRemove={handleRemove}
-                      onToggle={handleToggle}
+                      onIncrease={onIncrease}
+                      onDecrease={onDecrease}
+                      onRemove={onRemove}
+                      onToggle={onToggle}
                     />
                   );
                 })}
@@ -153,10 +106,10 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
                         <CartItem
                           item={item}
                           isCart
-                          onIncrease={handleIncrease}
-                          onDecrease={handleDecrease}
-                          onToggle={handleToggle}
-                          onRemove={handleRemove}
+                          onIncrease={onIncrease}
+                          onDecrease={onDecrease}
+                          onToggle={onToggle}
+                          onRemove={onRemove}
                         />
                       );
                     })}

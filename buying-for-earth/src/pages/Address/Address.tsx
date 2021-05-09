@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import DaumPostCode from 'react-daum-postcode';
+import ContentHeader from '../../components/ContentHeader';
 
 interface Props {
   onAddressInput: (address: string) => void;
@@ -36,9 +37,12 @@ function Address({ history, onAddressInput }: Props & RouteComponentProps) {
     height: '100vh',
   };
   return (
-    <div className="address--container">
-      <DaumPostCode style={style} onComplete={onCompletePost} autoClose />
-    </div>
+    <>
+      <ContentHeader title="주소검색" />
+      <div className="address--container" style={{ paddingTop: '3rem' }}>
+        <DaumPostCode style={style} onComplete={onCompletePost} autoClose />
+      </div>
+    </>
   );
 }
 
