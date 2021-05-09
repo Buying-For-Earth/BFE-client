@@ -2,15 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import './Payment.scss';
 
-interface item {
-  id: number;
-  name: string;
-  thumbnail: string;
-  price: number;
-  amount: number;
-  checked: boolean;
-}
-
 interface Props {
   price: number;
   totalPrice: number;

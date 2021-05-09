@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Switch, Route, withRouter, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Search from './pages/Search';
@@ -6,7 +6,6 @@ import Category from './pages/Category';
 import Mypage from './pages/Mypage';
 import Cart from './pages/Cart';
 import Product from './pages/Product';
-import Order from './pages/Order';
 import Complete from './pages/Complete';
 import Landing from './pages/Landing';
 import Navigation from './components/Navigation';
@@ -32,7 +31,6 @@ function App() {
         <Route path="/complete" render={() => <Complete />} />
         <Route path="/info" component={Info} />
         <Route path="/landing" render={() => <Landing />} />
-
       </Switch>
       {location.pathname === '/' ? (
         <Navigation />

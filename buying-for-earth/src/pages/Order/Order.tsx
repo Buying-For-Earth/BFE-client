@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
 import ContentHeader from '../../components/ContentHeader';
 import Address from '../Address';
 import Complete from '../Complete';
@@ -33,12 +32,6 @@ interface recipient {
   request: string;
 }
 
-interface locationProps {
-  orderList: item[];
-  price?: number;
-  totalPrice?: number;
-}
-
 interface Props {
   orderList: item[];
   price?: number;
@@ -46,17 +39,12 @@ interface Props {
 }
 
 function Order({
-  location,
   history,
   match,
   orderList,
   price,
   totalPrice,
 }: RouteComponentProps & Props) {
-  // const [orderList, setOrderList] = useState<item[]>([]);
-  // const [price, setPrice] = useState<number>();
-  // const [totalPrice, setTotalPrice] = useState<number>();
-  // console.log(match.url + '/order');
   const [address, setAddress] = useState('');
   const [orderer, setOrderer] = useState<orderer>({
     name: '',
@@ -75,12 +63,6 @@ function Order({
     setRecipient(recipient);
     history.goBack();
   };
-
-  // useEffect(() => {
-  //   setOrderList(location.state.orderList);
-  //   setPrice(location.state.price);
-  //   setTotalPrice(location.state.totalPrice);
-  // }, [orderList]);
 
   return (
     <Switch>

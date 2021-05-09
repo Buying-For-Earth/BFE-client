@@ -1,5 +1,4 @@
 import React from 'react';
-import ItemList from '../../Home/components/ItemList';
 import './OrderItem.scss';
 
 interface item {
