@@ -39,11 +39,83 @@
   outline: none;
   border: 0;
   box-shadow: 0 -2px 0px 0px rgb(64 60 67 / 16%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .modal__select {
+    margin: 5px;
+    width: 90%;
+    height: 13%;
+    background-color: #fff;
+    border: 1px solid #bbb;
+  }
+  .modal__select:nth-child(1) {
+    margin-top: 10px;
+  }
+  .modal__total {
+    position: absolute;
+    bottom: 68px;
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+
+    .modal__count {
+      display: flex;
+      border: 1px solid #bbb;
+      align-items: center;
+      font-weight: 100;
+
+      div {
+        font-size: 36px;
+        margin: 0 15px;
+      }
+      button {
+        width: 36px;
+        height: 36px;
+        border: none;
+        font-size: 18px;
+        background-color: transparent;
+      }
+      .modal__count__increase {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .modal__count__decrease {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .total--container {
+      display: flex;
+      width: 50%;
+      justify-content: flex-end;
+      .total__name {
+        font-size: 16px;
+        bottom: 0;
+        font-weight: 100;
+        color: gray;
+        display: flex;
+        align-items: flex-end;
+        margin-right: 5px;
+      }
+      .total__price {
+        right: 0;
+        bottom: 0;
+        font-size: 24px;
+        float: right;
+      }
+    }
+  }
 }
 .product-buy__modal-overlay {
   position: fixed;
   //   inset: 75% 0px 0px;
-  top: 75%;
+  top: 70%;
   left: 0;
   right: 0;
   bottom: 0;
@@ -52,7 +124,7 @@
 .close {
   position: fixed;
   overflow: hidden;
-  top: calc(75% - 25px);
+  top: calc(70% - 25px);
   left: 40%;
   height: 30px;
   background-color: #fff;

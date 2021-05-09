@@ -6,6 +6,7 @@ import ProductReview from './components/ProductReview';
 import ProductBuy from './components/ProductBuy';
 import { RouteComponentProps, withRouter } from 'react-router';
 import './Product.scss';
+import ContentHeader from '../../components/ContentHeader';
 
 interface MatchParams {
   id: string;
@@ -72,6 +73,7 @@ function Product({ match }: RouteComponentProps<MatchParams>) {
 
   return (
     <div className="product">
+      <ContentHeader title={item.name} />
       <ProductDetail item={item} />
       {/* <ProductDetailNav /> */}
       <Switch>
