@@ -14,8 +14,8 @@ import './Order.scss';
 
 interface item {
   id: number;
-  itemName: string;
-  image: string;
+  name: string;
+  thumbnail: string;
   price: number;
   amount: number;
   checked: boolean;
