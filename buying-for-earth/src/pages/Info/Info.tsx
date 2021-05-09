@@ -32,7 +32,6 @@ function Info({ onInfoInput }: Props) {
       }
     }
     setRadioCheck(obj);
-    console.log(e.target.value);
     setInfo({ ...info, request: e.target.value });
   };
 
