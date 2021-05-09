@@ -8,13 +8,6 @@ import Header from '../../components/Header';
 import ItemList from './components/ItemList';
 import Recommend from './components/Recommend';
 
-interface Product {
-  thumbnail: string;
-  name: string;
-  price: number;
-  id: number;
-}
-
 function Home() {
   const products = useSelector((state: RootState) => state.home);
   const dispatch = useDispatch();
@@ -24,14 +17,18 @@ function Home() {
         'http://ec2-52-79-76-54.ap-northeast-2.compute.amazonaws.com:5000/home'
       )
       .then((res) => {
-        dispatch(addRecommand(res.data.list[0].products));
-        dispatch(addNew(res.data.list[1].products));
-        dispatch(addBath(res.data.list[1].products));
+        for (let i = 0; i < 3; i++) {
+          if (res.data.list[i].order_num === 1)
+            dispatch(addRecommand(res.data.list[i].products));
+          if (res.data.list[i].order_num === 2)
+            dispatch(addNew(res.data.list[i].products));
+          if (res.data.list[i].order_num === 3)
+            dispatch(addBath(res.data.list[i].products));
+        }
       });
   };
   useEffect(() => {
     fetchData();
-    console.log(products);
   }, []);
   return (
     <>
