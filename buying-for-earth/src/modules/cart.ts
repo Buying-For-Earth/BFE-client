@@ -1,10 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+interface Options {
+  1: string;
+  2?: string;
+  3?: string;
+}
+
 export type Item = {
   thumbnail: string;
   name: string;
   price: number;
   id: number;
+  options?: Options;
   amount: number;
   checked: boolean;
 };
