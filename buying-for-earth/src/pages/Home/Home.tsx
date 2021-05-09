@@ -1,11 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../modules';
+import { addRecommand, addNew, addBath } from '../../modules/home';
 import './Home.scss';
 import Header from '../../components/Header';
 import ItemList from './components/ItemList';
 import Recommend from './components/Recommend';
-import { fakeData } from '../../fakeData';
+
+interface Product {
+  thumbnail: string;
+  name: string;
+  price: number;
+  id: number;
+}
 
 function Home() {
+  const products = useSelector((state: RootState) => state.home);
+  const dispatch = useDispatch();
+  const fetchData = () => {
+    axios
+      .get(
+        'http://ec2-52-79-76-54.ap-northeast-2.compute.amazonaws.com:5000/home'
+      )
+      .then((res) => {
+        dispatch(addRecommand(res.data.list[0].products));
+        dispatch(addNew(res.data.list[1].products));
+        dispatch(addBath(res.data.list[1].products));
+      });
+  };
+  useEffect(() => {
+    fetchData();
+    console.log(products);
+  }, []);
   return (
     <>
       <Header />
@@ -14,17 +41,19 @@ function Home() {
           <div className="home__recommend__title title">
             [MD추천] 이 상품 어때요?
           </div>
-          <Recommend items={fakeData} />
+          <Recommend list={products.recommand} />
         </div>
         <div className="home__new">
-          <div className="home__new__title title">[New] 새롭게 입점된 제품</div>
-          <ItemList items={fakeData} />
+          <div className="home__new__title title">
+            [New] 새롭게 입점된 친환경 빨대
+          </div>
+          <ItemList list={products.new} />
         </div>
         <div className="home__popular">
           <div className="home__popular__title title">
-            [2030女] 많이 찾는 제품
+            [깨끗해질래요!] 욕실 제품
           </div>
-          <ItemList items={fakeData} />
+          <ItemList list={products.bath} />
         </div>
       </div>
     </>

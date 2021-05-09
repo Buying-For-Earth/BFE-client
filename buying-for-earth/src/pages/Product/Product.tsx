@@ -15,8 +15,8 @@ interface MatchParams {
 function Product({ match }: RouteComponentProps<MatchParams>) {
   const [item, setItem] = useState({
     id: 0,
-    image: '',
-    itemName: '',
+    thumbnail: '',
+    name: '',
     price: 0,
   });
   useEffect(() => {
@@ -24,8 +24,8 @@ function Product({ match }: RouteComponentProps<MatchParams>) {
       if (item.id === Number(match.params.id)) {
         setItem({
           id: item.id,
-          image: item.image,
-          itemName: item.itemName,
+          thumbnail: item.thumbnail,
+          name: item.name,
           price: item.price,
         });
         break;

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Cart from '../../Cart';
 
 interface Props {
-  item: { id: number; itemName: string; image: string; price: number };
+  item: { id: number; name: string; thumbnail: string; price: number };
 }
 
 function ProductBuy({ item }: Props) {

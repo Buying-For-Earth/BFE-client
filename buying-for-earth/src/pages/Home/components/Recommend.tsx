@@ -1,20 +1,16 @@
 import React from 'react';
 import Slider from 'react-slick';
+import { Product } from '../../../modules/home';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Recommend.scss';
 import { Link } from 'react-router-dom';
 
-interface Item {
-  image: string;
-  id: number;
+interface RecommendProps {
+  list: [] | Product[];
 }
 
-interface Props {
-  items: Item[];
-}
-
-function Recommend({ items }: Props) {
+function Recommend({ list }: RecommendProps) {
   const settings = {
     infinite: true,
     speed: 500,
@@ -28,13 +24,14 @@ function Recommend({ items }: Props) {
     <div className="recommend--container">
       <div className="recommend__item">
         <Slider {...settings}>
-          {items.map((item) => (
-            <div key={item.id}>
-              <Link to={`/product/${item.id}`}>
-                <img src={item.image} alt="" />
-              </Link>
-            </div>
-          ))}
+          {list &&
+            list.map((item: Product) => (
+              <div key={item.id}>
+                <Link to={`/product/${item.id}`}>
+                  <img src={item.thumbnail} alt="" />
+                </Link>
+              </div>
+            ))}
         </Slider>
       </div>
     </div>
