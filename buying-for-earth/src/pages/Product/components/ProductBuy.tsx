@@ -5,11 +5,40 @@ import { BsChevronDown } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import Cart from '../../Cart';
 
-interface Props {
-  item: { id: number; itemName: string; image: string; price: number };
+interface DetailText {
+  '제조사/판매사'?: string;
+  '친환경 인증 제품'?: string;
+  재료?: string;
+  배출방법?: string;
 }
 
-function ProductBuy({ item }: Props) {
+interface Detail {
+  text: [DetailText];
+  url: string[];
+}
+
+interface Options {
+  order_num: number;
+  input_option: {
+    name: string;
+    type: string;
+    option_list?: string;
+  };
+}
+
+interface ProductBuyProps {
+  item: {
+    thumbnail: string;
+    name: string;
+    category: string;
+    price: number;
+    detail: Detail;
+    options: Options[];
+  };
+  id: string;
+}
+
+function ProductBuy({ item, id }: ProductBuyProps) {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function handleOpenModal() {
@@ -32,7 +61,7 @@ function ProductBuy({ item }: Props) {
     } else {
       // 장바구니에 이미 상품이 들어가 있는지 확인
       for (let i = 0; i < cartList.length; i++) {
-        if (item.id === cartList[i].id) {
+        if (id === cartList[i].id) {
           isExist = true;
           break;
         }
@@ -65,8 +94,8 @@ function ProductBuy({ item }: Props) {
           <select name="option1"></select>
           <div className="modal__bottom-btn">
             <button onClick={handleClickCart}>장바구니</button>
-            <Link to={`/direct/${item.id}`}>
-              <button>구매하기</button>
+            <Link to={`/direct/`} className="modal__bottom-btn__link">
+              구매하기
             </Link>
           </div>
           <button className="close" onClick={handleCloseModal}>

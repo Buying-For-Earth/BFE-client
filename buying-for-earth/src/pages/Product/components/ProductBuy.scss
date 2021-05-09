@@ -20,12 +20,11 @@
       justify-content: center;
       align-items: center;
       width: 90%;
-      background-color: green;
+      background-color: #31ceac;
       margin: auto;
       height: 70%;
       color: #fff;
       font-weight: bold;
-      border-radius: 6px;
     }
   }
 }
@@ -35,9 +34,11 @@
 .product-buy__modal {
   position: absolute;
   inset: 0px;
-  background-color: rgb(238, 238, 238);
+  background-color: #fff;
   overflow: auto;
   outline: none;
+  border: 0;
+  box-shadow: 0 -2px 0px 0px rgb(64 60 67 / 16%);
 }
 .product-buy__modal-overlay {
   position: fixed;
@@ -51,16 +52,17 @@
 .close {
   position: fixed;
   overflow: hidden;
-  top: calc(75% - 30px);
+  top: calc(75% - 25px);
   left: 40%;
   height: 30px;
-  background-color: rgb(238, 238, 238);
+  background-color: #fff;
   opacity: 1;
   outline: none;
   border: 0;
-  border-radius: 20px 20px 0 0;
+  border-radius: 30px 30px 0 0;
   padding-top: 5px;
   width: 20%;
+  box-shadow: 0 -2px 0px 0px rgb(64 60 67 / 16%);
 }
 .modal__bottom-btn {
   position: absolute;
@@ -68,6 +70,20 @@
   justify-content: space-around;
   bottom: 10px;
   width: 100%;
+}
+.modal__bottom-btn__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  color: #fff;
+  height: 46px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 16px;
+  color: #fff;
+  border: 1px solid #31ceac;
+  background-color: #31ceac;
 }
 .modal__bottom-btn button {
   width: 45%;
@@ -77,12 +93,12 @@
   font-size: 16px;
 }
 .modal__bottom-btn button:nth-child(1) {
-  border: 1px solid green;
-  color: green;
+  border: 1px solid #31ceac;
+  color: #31ceac;
   background-color: #fff;
 }
 .modal__bottom-btn button:nth-child(2) {
-  background-color: green;
+  background-color: #31ceac;
   color: #fff;
   border: none;
 }
