@@ -71,7 +71,7 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
       setTotalPrice(price + 3000);
     }
     setPrice(price);
-  }, [items, directItem]);
+  }, [isCart, items, directItem]);
 
   return (
     <>
@@ -112,6 +112,7 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
                     {items.map((item) => {
                       return (
                         <CartItem
+                          key={item.id}
                           item={item}
                           isCart
                           onIncrease={onIncrease}
