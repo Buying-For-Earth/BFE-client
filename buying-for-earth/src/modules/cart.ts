@@ -53,6 +53,9 @@ const cartSlice = createSlice({
           : item;
       });
     },
+    clear: (state) => {
+      return [];
+    },
   },
 });
 
@@ -62,5 +65,6 @@ export const {
   decrease,
   remove,
   toggle,
+  clear,
 } = cartSlice.actions;
 export default cartSlice.reducer;
