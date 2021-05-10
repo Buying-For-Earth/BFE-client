@@ -101,8 +101,6 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
         exact
         render={() => (
           <>
-            <ContentHeader title={'장바구니'} />
-
             <div className="cart--container">
               {!items.length ? (
                 <Empty />

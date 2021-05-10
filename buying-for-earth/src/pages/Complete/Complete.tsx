@@ -20,7 +20,7 @@ function Complete({ name, totalPrice, history }: Props & RouteComponentProps) {
       console.log('clear');
       dispatch(clear());
     }
-  }, [history, dispatch, totalPrice]);
+  }, [history, dispatch]);
   return (
     <div className="complete--container">
       <div className="complete-header">주문완료</div>
