@@ -2,10 +2,10 @@ import React from 'react';
 import {
   AiFillCheckCircle,
   AiOutlineCheckCircle,
-  AiOutlineClose,
   AiOutlineMinus,
   AiOutlinePlus,
 } from 'react-icons/ai';
+import { IoCloseOutline } from 'react-icons/io5';
 import { Item } from '../../../modules/cart';
 import './CartItem.scss';
 
@@ -35,9 +35,9 @@ function CartItem({
             onClick={() => onToggle(item.id)}
           >
             {item.checked ? (
-              <AiFillCheckCircle color="#34cdab" />
+              <AiFillCheckCircle color="#34CDAB" />
             ) : (
-              <AiOutlineCheckCircle />
+              <AiOutlineCheckCircle color="#aaa" />
             )}
           </div>
         )}
@@ -47,7 +47,7 @@ function CartItem({
             className="cart-item__top__remove"
             onClick={() => onRemove(item.id)}
           >
-            <AiOutlineClose />
+            <IoCloseOutline color="#aaa" />
           </div>
         )}
       </div>
@@ -60,21 +60,21 @@ function CartItem({
               className="decrease-btn"
               onClick={() => onDecrease(item.id)}
             >
-              <AiOutlineMinus />
+              <AiOutlineMinus color="#bbb" />
             </button>
             <input type="text" value={item.amount} />
             <button
               className="increase-btn"
               onClick={() => onIncrease(item.id)}
             >
-              <AiOutlinePlus />
+              <AiOutlinePlus color="#bbb" />
             </button>
           </div>
         </div>
       </div>
       <ul className="cart-item__info__options">
-        <li className="options__option">색상: {item.options?.[1]}</li>
-        <li className="optins__option">비누 중량: {item.options?.[2]}</li>
+        <li className="options__option">색상 : {item.options?.[1]}</li>
+        <li className="optins__option">비누 중량 : {item.options?.[2]}</li>
       </ul>
     </div>
   );
