@@ -2,7 +2,7 @@
   width: 100%;
   box-sizing: border-box;
   background-color: white;
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
   padding: 1rem;
   .cart-item__top {
     display: flex;
@@ -49,17 +49,14 @@
       .wrap__amount {
         display: flex;
         height: 1.5rem;
+        border: 1px solid #bbb;
         .decrease-btn {
-          border-top-left-radius: 0.3rem;
-          border-bottom-left-radius: 0.3rem;
-          border: solid 1px;
+          border: none;
           outline: none;
           background-color: white;
         }
         .increase-btn {
-          border-top-right-radius: 0.3rem;
-          border-bottom-right-radius: 0.3rem;
-          border: solid 1px;
+          border: none;
           outline: none;
           background-color: white;
         }
@@ -68,10 +65,7 @@
           width: 2rem;
           text-align: center;
           outline: none;
-          border-left: none;
-          border-right: none;
-          border-top: solid black 1px;
-          border-bottom: solid black 1px;
+          border: none;
         }
       }
     }
