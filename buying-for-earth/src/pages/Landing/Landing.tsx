@@ -65,7 +65,9 @@ function Landing() {
           </p>
         </div>
       </Slider>
-      <a href="https://url.kr/ajlows">친환경 제품 구경하러 가기!</a>
+      <a href="http://buying-for-earth.s3-website.ap-northeast-2.amazonaws.com/">
+        친환경 제품 구경하러 가기!
+      </a>
     </div>
   );
 }
