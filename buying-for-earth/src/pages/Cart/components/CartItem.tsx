@@ -58,7 +58,12 @@ function CartItem({
           <div className="wrap__amount">
             <button
               className="decrease-btn"
-              onClick={() => onDecrease(item.id)}
+              onClick={() => {
+                if (item.amount === 1) {
+                  return;
+                }
+                return onDecrease(item.id);
+              }}
             >
               <AiOutlineMinus color="#bbb" />
             </button>
@@ -73,8 +78,13 @@ function CartItem({
         </div>
       </div>
       <ul className="cart-item__info__options">
-        <li className="options__option">색상 : {item.options?.[1]}</li>
-        <li className="optins__option">비누 중량 : {item.options?.[2]}</li>
+        {item.options?.map((ele, index) => {
+          return (
+            <li className="options__option" key={index}>
+              {ele.name} : {ele.option}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

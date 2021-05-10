@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface Options {
-  1: string;
-  2?: string;
-  3?: string;
+    name: string;
+    option: string;
 }
 
 export type Item = {
@@ -11,7 +10,7 @@ export type Item = {
   name: string;
   price: number;
   id: number;
-  options?: Options;
+  options?: Options[];
   amount: number;
   checked: boolean;
 };

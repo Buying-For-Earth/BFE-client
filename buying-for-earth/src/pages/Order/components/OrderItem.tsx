@@ -20,7 +20,13 @@ function OrderItem({ items }: Props) {
           <div className="order-item__info__wrap">
             <div className="wrap wrap__name">{item.name}</div>
             <div className="wrap wrap__option">
-              색상: {item.options?.[1]} / 비누중량: {item.options?.[2]}
+              {item.options?.map((ele, index) => {
+                return (
+                  <div key={index}>
+                    {ele.name} : {ele.option}
+                  </div>
+                );
+              })}
             </div>
             <div className="wrap wrap__price">
               <div className="price">{item.price.toLocaleString()} 원</div>

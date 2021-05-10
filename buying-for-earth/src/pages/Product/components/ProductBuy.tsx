@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ProductBuy.scss';
 import Modal from 'react-modal';
 import { BsChevronDown } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { addItems } from '../../../modules/cart';
 import { RootState } from '../../../modules';
 import { addItem } from '../../../modules/direct';
@@ -20,13 +20,15 @@ interface Detail {
   url: string[];
 }
 
+interface InputOption {
+  name: string;
+  type: string;
+  option_list?: string[];
+}
+
 interface Options {
   order_num: number;
-  input_option: {
-    name: string;
-    type: string;
-    option_list?: string[];
-  };
+  input_option: InputOption;
 }
 
 interface ProductBuyProps {
@@ -39,12 +41,24 @@ interface ProductBuyProps {
     options: Options[];
   };
   id: string;
+  selectOptionList: SelectOption[];
+  setSelectOptionList: React.Dispatch<
+    React.SetStateAction<[] | SelectOption[]>
+  >;
 }
+type SelectOption = {
+  name: string;
+  option: string;
+};
 
-function ProductBuy({ item, id }: ProductBuyProps) {
+function ProductBuy({
+  item,
+  id,
+  selectOptionList,
+  setSelectOptionList,
+}: ProductBuyProps) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [count, setCount] = useState(1);
-  const [selectOptionList, setSelectOptionList] = useState({});
   const items = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
@@ -101,10 +115,12 @@ function ProductBuy({ item, id }: ProductBuyProps) {
     e: React.ChangeEvent<HTMLSelectElement>,
     index: number
   ) {
-    setSelectOptionList({
-      ...selectOptionList,
-      [index]: e.currentTarget.value,
-    });
+    let changeOption = [...selectOptionList];
+    changeOption[index - 1] = {
+      name: item.options[index].input_option.name,
+      option: e.currentTarget.value,
+    };
+    setSelectOptionList(changeOption);
   }
 
   const customStyles = {
