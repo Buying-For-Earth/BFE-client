@@ -1,9 +1,14 @@
 .mypage__notice {
   font-family: 'Cute Font';
-  height: 90vh;
-  line-height: 90vh;
-  color: #bbb;
-  font-size: 1.5rem;
-  font-weight: bold;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  font-size: 1.5rem;
+  color: #bbb;
 }
