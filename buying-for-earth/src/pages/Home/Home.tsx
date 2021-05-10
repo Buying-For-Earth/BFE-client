@@ -32,7 +32,6 @@ function Home() {
   }, []);
   return (
     <>
-      <Header />
       <div className="home--container">
         <div className="home__recommend">
           <div className="home__recommend__title title">

@@ -11,6 +11,7 @@ import Complete from './pages/Complete';
 import Landing from './pages/Landing';
 import Navigation from './components/Navigation';
 import Info from './pages/Info';
+import Header from './components/Header';
 
 function App() {
   const location = useLocation();
@@ -21,6 +22,17 @@ function App() {
 
   return (
     <div>
+      {location.pathname === '/' ? (
+        <Header />
+      ) : location.pathname === '/mypage' ? (
+        <Header />
+      ) : location.pathname === '/search' ? (
+        <Header />
+      ) : location.pathname === '/category' ? (
+        <Header />
+      ) : location.pathname === '/cart' ? (
+        <Header />
+      ) : null}
       <Switch>
         <Route path="/" exact render={() => <Home />} />
         <Route path="/search" render={() => <Search />} />
@@ -32,7 +44,6 @@ function App() {
         <Route path="/complete" render={() => <Complete />} />
         <Route path="/info" component={Info} />
         <Route path="/landing" render={() => <Landing />} />
-
       </Switch>
       {location.pathname === '/' ? (
         <Navigation />
