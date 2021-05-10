@@ -75,7 +75,6 @@ function Product({ match }: RouteComponentProps<MatchParams>) {
     <div className="product">
       <ContentHeader title={item.name} />
       <ProductDetail item={item} />
-      {/* <ProductDetailNav /> */}
       <Switch>
         <Route path="/product/review" render={() => <ProductReview />} />
       </Switch>
