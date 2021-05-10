@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './ProductBuy.scss';
 import Modal from 'react-modal';
 import { BsChevronDown } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { addItems } from '../../../modules/cart';
 import { RootState } from '../../../modules';
 import { addItem } from '../../../modules/direct';
@@ -172,6 +172,8 @@ function ProductBuy({
                   {optionValue}
                 </select>
               );
+            } else {
+              return null;
             }
           })}
 

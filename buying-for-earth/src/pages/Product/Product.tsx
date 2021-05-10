@@ -87,7 +87,7 @@ function Product({ match }: RouteComponentProps<MatchParams>) {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [match.params.id]);
 
   return (
     <div className="product">
