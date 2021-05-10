@@ -10,7 +10,7 @@ export type Item = {
   name: string;
   price: number;
   id: number;
-  options?: Options[];
+  options: Options[] | [];
   amount: number;
   checked: boolean;
 };
