@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Landing.scss';
 
 function Landing() {
-  //   const [scrollY, setScrollY] = useState(0);
-
-  //   useEffect(() => {
-  //     window.onscroll = () => {
-  //       setScrollY(window.pageYOffset);
-  //     };
-  //   }, []);
-
   const settings = {
     dots: true,
     infinite: false,

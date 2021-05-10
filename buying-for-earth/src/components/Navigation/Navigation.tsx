@@ -25,15 +25,11 @@ function Navigation() {
     } else if (pathName === '/cart') {
       setTabIndex(4);
     }
-  });
+  }, [location.pathname]);
 
   return (
     <div className="navigation--container">
-      <TabBar
-        indicatorTransition="slide"
-        activeTabIndex={tabIndex}
-        foundationRef={null}
-      >
+      <TabBar activeTabIndex={tabIndex} foundationRef={null}>
         <Tab onClick={() => history.push('/')}>
           <BiHomeAlt size="24" />
         </Tab>

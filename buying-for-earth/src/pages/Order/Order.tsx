@@ -65,7 +65,7 @@ function Order({
           <div className="order--container">
             <ContentHeader title={'주문서'} />
             <OrderItem items={orderList} />
-            <Orderer onOrdererInput={handleOrdererInput} />
+            <Orderer onOrdererInput={handleOrdererInput} orderer={orderer} />
             <Destination address={address} recipient={recipient} />
             <Price price={price} totalPrice={totalPrice} />
             <PaymentOption totalPrice={totalPrice} />

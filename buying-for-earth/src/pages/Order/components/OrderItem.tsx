@@ -11,7 +11,7 @@ function OrderItem({ items }: Props) {
     <div className="order-item--container">
       <div className="order-item__header">주문상품</div>
       {items.map((item) => (
-        <div className="order-item__info">
+        <div className="order-item__info" key={item.id}>
           <img
             className="order-item__info__image"
             src={item.thumbnail}
