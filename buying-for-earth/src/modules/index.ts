@@ -4,17 +4,19 @@ import storage from 'redux-persist/lib/storage';
 import search from './search';
 import home from './home';
 import cart from './cart';
+import direct from './direct';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['cart'],
+  whitelist: ['cart', 'direct'],
 };
 
 const rootReducer = combineReducers({
   search,
   home,
   cart,
+  direct,
 });
 
 export default persistReducer(persistConfig, rootReducer);

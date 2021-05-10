@@ -90,7 +90,9 @@ function PaymentOption({ totalPrice }: Props) {
 
       {paymentButton.active ? (
         <Link to={`${match.url}/complete`}>
-          <div className="payment-btn">{totalPrice}원 결제하기</div>
+          <div className="payment-btn">
+            {totalPrice?.toLocaleString()}원 결제하기
+          </div>
         </Link>
       ) : (
         <div className="disabled">결제수단을 선택해주세요</div>

@@ -3,6 +3,7 @@ import { Route, RouteComponentProps, withRouter } from 'react-router';
 import ContentHeader from '../../components/ContentHeader';
 import './Cart.scss';
 import { increase, decrease, remove, toggle } from './../../modules/cart';
+import { directIncrease, directDecrease } from './../../modules/direct';
 import { useDispatch, useSelector } from 'react-redux';
 import CartItem from './components/CartItem';
 import Empty from './components/Empty';
@@ -21,6 +22,7 @@ interface Props {
 // 장바구니로 들어온 경우 isCart=true 바로구매로 들어오면 isCart=false
 function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
   const items = useSelector((state: RootState) => state.cart);
+  const directItem = useSelector((state: RootState) => state.direct);
   const dispatch = useDispatch();
   const [price, setPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -44,12 +46,22 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
     dispatch(remove(id));
   };
 
+  const onDirectIncrease = () => {
+    dispatch(directIncrease());
+  };
+
+  const onDirectDecrease = () => {
+    dispatch(directDecrease());
+  };
+
   useEffect(() => {
     let price = 0;
-    if (items) {
+    if (isCart) {
       items.forEach((item) => {
         if (item.checked) price += item.price * item.amount;
       });
+    } else {
+      price = directItem.price * directItem.amount;
     }
     if (price > 30000) {
       setTotalPrice(price);
@@ -59,7 +71,7 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
       setTotalPrice(price + 3000);
     }
     setPrice(price);
-  }, [items]);
+  }, [items, directItem]);
 
   return (
     <>
@@ -71,17 +83,13 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
             <ContentHeader title={'바로구매'} />
             <div className="cart--container">
               <div className="cart__list">
-                {items.map((item) => {
-                  return (
-                    <CartItem
-                      item={item}
-                      onIncrease={onIncrease}
-                      onDecrease={onDecrease}
-                      onRemove={onRemove}
-                      onToggle={onToggle}
-                    />
-                  );
-                })}
+                <CartItem
+                  item={directItem}
+                  onIncrease={onDirectIncrease}
+                  onDecrease={onDirectDecrease}
+                  onRemove={onRemove}
+                  onToggle={onToggle}
+                />
               </div>
             </div>
             <Payment price={price} totalPrice={totalPrice} />
@@ -123,9 +131,17 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
       />
       <Route
         path={`${match.url}/order`}
-        render={() => (
-          <Order orderList={items} price={price} totalPrice={totalPrice} />
-        )}
+        render={() =>
+          isCart ? (
+            <Order orderList={items} price={price} totalPrice={totalPrice} />
+          ) : (
+            <Order
+              orderList={[directItem]}
+              price={price}
+              totalPrice={totalPrice}
+            />
+          )
+        }
       />
     </>
   );

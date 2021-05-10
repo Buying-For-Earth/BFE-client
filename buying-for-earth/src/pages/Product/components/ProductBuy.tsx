@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import './ProductBuy.scss';
 import Modal from 'react-modal';
 import { BsChevronDown } from 'react-icons/bs';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addItems } from '../../../modules/cart';
+import { RootState } from '../../../modules';
+import { addItem } from '../../../modules/direct';
 
 interface DetailText {
   '제조사/판매사'?: string;
@@ -43,7 +45,7 @@ function ProductBuy({ item, id }: ProductBuyProps) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [count, setCount] = useState(1);
   const [selectOptionList, setSelectOptionList] = useState({});
-
+  const items = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
   function handleOpenModal() {
@@ -54,44 +56,45 @@ function ProductBuy({ item, id }: ProductBuyProps) {
   }
 
   const handleClickCart = () => {
-    const items = localStorage.getItem('items');
-    const cartList = JSON.parse(String(items));
     let isExist = false;
+
+    for (let i = 0; i < items.length; i++) {
+      if (id === String(items[i].id)) {
+        isExist = true;
+        break;
+      }
+    }
+    // 장바구니에 이미 상품이 있으면 추가 x
+    if (isExist) {
+      alert('이미 들어있는 상품');
+    } else {
+      // 상품이 없으면 추가
+      dispatch(
+        addItems({
+          thumbnail: item.thumbnail,
+          name: item.name,
+          price: item.price,
+          id: id,
+          options: selectOptionList,
+          amount: count,
+          checked: true,
+        })
+      );
+      alert('상품이 추가되었습니다.');
+    }
+  };
+
+  const handleClickBuy = () => {
     dispatch(
-      addItems({
+      addItem({
         thumbnail: item.thumbnail,
         name: item.name,
         price: item.price,
         id: id,
         options: selectOptionList,
         amount: count,
-        checked: true,
       })
     );
-    // 장바구니가 비어 있는 경우
-    if (!cartList.length) {
-      cartList.push(item);
-
-      localStorage.setItem('items', JSON.stringify(cartList));
-      alert('상품이 추가되었습니다');
-    } else {
-      // 장바구니에 이미 상품이 들어가 있는지 확인
-      for (let i = 0; i < cartList.length; i++) {
-        if (id === cartList[i].id) {
-          isExist = true;
-          break;
-        }
-      }
-      // 장바구니에 이미 상품이 있으면 추가 x
-      if (isExist) {
-        alert('이미 들어있는 상품');
-      } else {
-        // 상품이 없으면 추가
-        cartList.push(item);
-        localStorage.setItem('items', JSON.stringify(cartList));
-        alert('상품이 추가되었습니다.');
-      }
-    }
   };
 
   function selectOption(
@@ -184,7 +187,11 @@ function ProductBuy({ item, id }: ProductBuyProps) {
           </div>
           <div className="modal__bottom-btn">
             <button onClick={handleClickCart}>장바구니</button>
-            <Link to={`/direct/`} className="modal__bottom-btn__link">
+            <Link
+              to={`/direct/${id}`}
+              className="modal__bottom-btn__link"
+              onClick={handleClickBuy}
+            >
               구매하기
             </Link>
           </div>

@@ -6,19 +6,11 @@ import {
   AiOutlineMinus,
   AiOutlinePlus,
 } from 'react-icons/ai';
+import { Item } from '../../../modules/cart';
 import './CartItem.scss';
 
-interface item {
-  id: number;
-  name: string;
-  thumbnail: string;
-  price: number;
-  checked: boolean;
-  amount: number;
-}
-
 interface Props {
-  item: item;
+  item: Item;
   isCart?: boolean;
   onIncrease: (id: number) => void;
   onDecrease: (id: number) => void;
@@ -80,11 +72,10 @@ function CartItem({
           </div>
         </div>
       </div>
-      {/* <ul className="cart-item__info__options">
-        {items[0].options.map((option) => (
-          <li className="options__option">{option}</li>
-        ))}
-      </ul> */}
+      <ul className="cart-item__info__options">
+        <li className="options__option">색상: {item.options?.[1]}</li>
+        <li className="optins__option">비누 중량: {item.options?.[2]}</li>
+      </ul>
     </div>
   );
 }
