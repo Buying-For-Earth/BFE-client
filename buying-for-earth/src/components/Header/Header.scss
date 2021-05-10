@@ -1,12 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Cute+Font&display=swap');
+
 .header {
-  background-color: #78be44;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #34cdab;
   height: 44px;
   line-height: 44px;
+  z-index: 100;
 
   .main {
+    font-family: 'Cute Font';
     color: white;
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 2rem;
+    font-weight: 700;
   }
   .else {
     color: white;

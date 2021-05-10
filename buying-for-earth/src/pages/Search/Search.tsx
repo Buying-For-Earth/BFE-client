@@ -1,7 +1,7 @@
-import React from "react";
-import "./Search.scss";
-import SearchProduct from "./components/SearchProduct";
-import SearchResult from "./components/SearchResult";
+import React from 'react';
+import './Search.scss';
+import SearchProduct from './components/SearchProduct';
+import SearchResult from './components/SearchResult';
 
 function Search() {
   return (

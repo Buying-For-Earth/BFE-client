@@ -19,7 +19,7 @@
     }
   }
 
-  .dst__input__label::after {
+  .empty::after {
     content: '*';
     color: red;
   }

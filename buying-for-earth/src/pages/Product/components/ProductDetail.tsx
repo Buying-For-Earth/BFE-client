@@ -1,37 +1,77 @@
-import React, { useEffect, useState } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
-import { fakeData } from '../../../fakeData';
+import React from 'react';
 import './ProductDetail.scss';
 
-interface MatchParams {
-  id: string;
+interface DetailText {
+  '제조사/판매사'?: string;
+  '친환경 인증 제품'?: string;
+  재료?: string;
+  배출방법?: string;
 }
 
-function ProductDetail({ match }: RouteComponentProps<MatchParams>) {
-  const [item, setItem] = useState({ image: '', name: '', price: 0 });
+interface Detail {
+  text: [DetailText];
+  url: string[];
+}
 
-  useEffect(() => {
-    for (let item of fakeData) {
-      if (item.id === Number(match.params.id)) {
-        setItem({ image: item.image, name: item.itemName, price: item.price });
-        break;
-      }
-    }
-  }, []);
+interface Options {
+  order_num: number;
+  input_option: {
+    name: string;
+    type: string;
+    option_list?: string[];
+  };
+}
 
+interface ProductDetailProps {
+  item: {
+    thumbnail: string;
+    name: string;
+    category: string;
+    price: number;
+    detail: Detail;
+    options: Options[];
+  };
+}
+
+function ProductDetail({ item }: ProductDetailProps) {
   return (
     <div className="product-detail--container">
-      {/* <div className="product-detail__image"> */}
-      <img className="product-detail__image" src={item.image} alt="" />
-      {/* </div> */}
+      <img className="product-thumbnail__image" src={item.thumbnail} alt="" />
       <div className="product-detail__name">{item.name}</div>
-      <div className="product-detail__discount-price">{item.price}원</div>
-      {/* <div className="product-detail__price">{'1,300'}원</div> */}
-      <div className="product-detail__image"></div>
-      <div className="product-detail__image"></div>
-      <div className="product-detail__image"></div>
+      <div className="product-detail__allPrice">
+        <span className="allPrice__sale">20%</span>
+        <span className="product-detail__discount-price">
+          {item.price * 0.8}원
+        </span>
+        <div className="product-detail__price">{item.price}원</div>
+      </div>
+      <div className="product-detail__detailText">
+        <div className="detailText__key">
+          {item.detail.text.map((ele, index) => {
+            return (
+              <div className="detailText__column" key={index}>
+                <span>{Object.keys(ele)}</span>
+              </div>
+            );
+          })}
+        </div>
+        <div>
+          {item.detail.text.map((ele, index) => {
+            return (
+              <div className="detailText__column" key={index}>
+                <span>{Object.values(ele)}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      {item.detail.url.map((ele, index) => {
+        return (
+          <img className="product-detail__image" src={ele} alt="" key={index} />
+        );
+      })}
     </div>
   );
 }
 
-export default withRouter(ProductDetail);
+export default ProductDetail;
