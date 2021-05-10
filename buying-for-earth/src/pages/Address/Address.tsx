@@ -31,7 +31,7 @@ function Address({ history, onAddressInput }: Props & RouteComponentProps) {
     if (close) {
       history.go(-2);
     }
-  }, [close]);
+  }, [history, close]);
 
   const style: any = {
     height: '100vh',

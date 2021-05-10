@@ -67,7 +67,7 @@ function CartItem({
             >
               <AiOutlineMinus color="#bbb" />
             </button>
-            <input type="text" value={item.amount} />
+            <input type="text" value={item.amount} readOnly />
             <button
               className="increase-btn"
               onClick={() => onIncrease(item.id)}
@@ -78,9 +78,9 @@ function CartItem({
         </div>
       </div>
       <ul className="cart-item__info__options">
-        {item.options?.map((ele) => {
+        {item.options?.map((ele, index) => {
           return (
-            <li className="options__option">
+            <li className="options__option" key={index}>
               {ele.name} : {ele.option}
             </li>
           );
