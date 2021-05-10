@@ -26,6 +26,7 @@ function CartItem({
   onToggle,
   onRemove,
 }: Props) {
+  let optionArray = Array.from(item.options!);
   return (
     <div className="cart-item--container">
       <div className="cart-item__top">
@@ -78,7 +79,7 @@ function CartItem({
         </div>
       </div>
       <ul className="cart-item__info__options">
-        {item.options?.map((ele, index) => {
+        {optionArray.map((ele, index) => {
           return (
             <li className="options__option" key={index}>
               {ele.name} : {ele.option}
