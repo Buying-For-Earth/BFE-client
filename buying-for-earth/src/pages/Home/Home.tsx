@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { addRecommand, addNew, addBath } from '../../modules/home';
 import './Home.scss';
-import Header from '../../components/Header';
 import ItemList from './components/ItemList';
 import Recommend from './components/Recommend';
 
 function Home() {
   const products = useSelector((state: RootState) => state.home);
   const dispatch = useDispatch();
-  const fetchData = () => {
+  const fetchData = useCallback(() => {
     axios
       .get(
         'http://ec2-52-79-76-54.ap-northeast-2.compute.amazonaws.com:5000/home'
@@ -26,10 +25,11 @@ function Home() {
             dispatch(addBath(res.data.list[i].products));
         }
       });
-  };
+  }, [dispatch]);
+
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
   return (
     <>
       <div className="home--container">

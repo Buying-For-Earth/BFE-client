@@ -62,7 +62,7 @@ function CartItem({
             >
               <AiOutlineMinus color="#bbb" />
             </button>
-            <input type="text" value={item.amount} />
+            <input type="text" value={item.amount} readOnly />
             <button
               className="increase-btn"
               onClick={() => onIncrease(item.id)}

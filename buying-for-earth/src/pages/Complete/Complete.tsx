@@ -10,17 +10,17 @@ interface Props {
   totalPrice?: number;
 }
 function Complete({ name, totalPrice, history }: Props & RouteComponentProps) {
-  const path = history.location.pathname.split('/');
   const [price, setPrice] = useState(0);
   const dispatch = useDispatch();
   useEffect(() => {
+    const path = history.location.pathname.split('/');
     setPrice(Number(totalPrice));
     if (path[1] === 'cart') {
       // 카트삭제
       console.log('clear');
       dispatch(clear());
     }
-  }, []);
+  }, [history, dispatch, totalPrice]);
   return (
     <div className="complete--container">
       <div className="complete-header">주문완료</div>
