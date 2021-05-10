@@ -12,12 +12,26 @@
     }
     .order-item__info__wrap {
       padding: 0 1rem;
+      line-height: 1.25rem;
     }
     .wrap__price {
       display: flex;
+      align-items: center;
+      div {
+        padding: 0.2rem;
+      }
+      .price {
+        font-weight: bold;
+      }
+      .amount {
+        color: #696161;
+      }
     }
     .wrap {
       padding: 0.15rem;
+    }
+    .wrap__option {
+      color: #696161;
     }
   }
 }

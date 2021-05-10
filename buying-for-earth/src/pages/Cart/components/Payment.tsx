@@ -2,15 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import './Payment.scss';
 
-interface item {
-  id: number;
-  name: string;
-  thumbnail: string;
-  price: number;
-  amount: number;
-  checked: boolean;
-}
-
 interface Props {
   price: number;
   totalPrice: number;
@@ -32,7 +23,7 @@ const Payment = ({ price, totalPrice }: Props) => {
     <div className="payment--container">
       <div className="payment__price">
         <div className="payment__price__label">총 상품금액</div>
-        <div className="payment__price__value">{price} 원</div>
+        <div className="payment__price__value">{price.toLocaleString()} 원</div>
       </div>
       <div className="payment__price">
         <div className="payment__price__label">할인금액</div>
@@ -47,10 +38,14 @@ const Payment = ({ price, totalPrice }: Props) => {
       <div className="payment__notice">30,000원 이상 구매 시, 무료배송</div>
       <div className="payment__price total">
         <div className="payment__price__label">결제예정금액</div>
-        <div className="payment__price__value">{totalPrice} 원</div>
+        <div className="payment__price__value">
+          {totalPrice.toLocaleString()} 원
+        </div>
       </div>
       <Link to={`${match.url}/order`}>
-        <div className="payment__btn">{totalPrice}원 주문하기</div>
+        <div className="payment__btn">
+          {totalPrice.toLocaleString()}원 주문하기
+        </div>
       </Link>
     </div>
   );

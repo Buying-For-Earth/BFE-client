@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import './Orderer.scss';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
-interface orderer {
-  name: string;
-  phone: string;
-  email: string;
-}
-
 interface Props {
   onOrdererInput: (e: any) => void;
 }

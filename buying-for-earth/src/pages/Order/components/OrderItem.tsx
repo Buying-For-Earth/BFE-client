@@ -1,18 +1,9 @@
 import React from 'react';
-import ItemList from '../../Home/components/ItemList';
+import { Item } from '../../../modules/cart';
 import './OrderItem.scss';
 
-interface item {
-  id: number;
-  name: string;
-  thumbnail: string;
-  price: number;
-  amount: number;
-  checked: boolean;
-}
-
 interface Props {
-  items: item[];
+  items: Item[];
 }
 
 function OrderItem({ items }: Props) {
@@ -28,11 +19,12 @@ function OrderItem({ items }: Props) {
           />
           <div className="order-item__info__wrap">
             <div className="wrap wrap__name">{item.name}</div>
-            {/* <div className="wrap wrap__option">
-              칫솔모 색상: 브라운 / 사이즈: 대
-            </div> */}
+            <div className="wrap wrap__option">
+              색상: {item.options?.[1]} / 비누중량: {item.options?.[2]}
+            </div>
             <div className="wrap wrap__price">
-              <div className="price">{item.price} 원</div>
+              <div className="price">{item.price.toLocaleString()} 원</div>
+              <div style={{ fontSize: '14px', color: '#070707' }}>|</div>
               <div className="amount">{item.amount}개</div>
             </div>
           </div>
