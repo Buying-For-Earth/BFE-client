@@ -5,7 +5,6 @@ import { BsChevronDown } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addItems } from '../../../modules/cart';
-import { BsPlus, BsDash } from 'react-icons/bs';
 
 interface DetailText {
   '제조사/판매사'?: string;
@@ -105,6 +104,22 @@ function ProductBuy({ item, id }: ProductBuyProps) {
     });
   }
 
+  const customStyles = {
+    content: {
+      top: '60%',
+      left: '0',
+      right: '0',
+      bottom: '0',
+    },
+    overlay: {
+      top: '0',
+      left: '0',
+      right: '0',
+      bottom: '0',
+      backgroundColor: 'transparent',
+    },
+  };
+
   return (
     <div className="product-buy--container">
       <div className="product-buy-btn-set">
@@ -112,11 +127,12 @@ function ProductBuy({ item, id }: ProductBuyProps) {
           구매하기
         </div>
         <Modal
+          style={customStyles}
           isOpen={modalIsOpen}
           onRequestClose={handleCloseModal}
           contentLabel="content Label"
           className="product-buy__modal"
-          overlayClassName="product-buy__modal-overlay"
+          // overlayClassName="product-buy__modal-overlay"
           ariaHideApp={false}
         >
           {item.options.map((ele, index) => {
@@ -151,14 +167,14 @@ function ProductBuy({ item, id }: ProductBuyProps) {
                   return setCount(count - 1);
                 }}
               >
-                <BsDash />
+                <div>{`-`}</div>
               </button>
               <div>{count}</div>
               <button
                 className="modal__count__increase"
                 onClick={() => setCount(count + 1)}
               >
-                <BsPlus />
+                <div>{`+`}</div>
               </button>
             </div>
             <div className="total--container">

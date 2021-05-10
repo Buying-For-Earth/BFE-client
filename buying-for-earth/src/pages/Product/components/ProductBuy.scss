@@ -47,8 +47,11 @@
     margin: 5px;
     width: 90%;
     height: 13%;
+    background: url(../images/down.png) no-repeat 95% 50%;
+    background-size: 5%;
     background-color: #fff;
     border: 1px solid #bbb;
+    -webkit-appearance: none;
   }
   .modal__select:nth-child(1) {
     margin-top: 10px;
@@ -66,6 +69,7 @@
       border: 1px solid #bbb;
       align-items: center;
       font-weight: 100;
+      height: 100%;
 
       div {
         font-size: 36px;
@@ -73,20 +77,37 @@
       }
       button {
         width: 36px;
-        height: 36px;
+        height: 100%;
         border: none;
         font-size: 18px;
         background-color: transparent;
-      }
-      .modal__count__increase {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 0px;
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          font-size: 24px;
+          font-weight: lighter;
+        }
+      }
+      .modal__count__increase {
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+        font-family: 'Noto Sans KR';
+        padding-bottom: 5px;
       }
       .modal__count__decrease {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-bottom: 6.5px;
+        font-family: 'Noto Sans KR';
       }
     }
 
@@ -119,12 +140,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  opacity: 1;
 }
 .close {
   position: fixed;
   overflow: hidden;
-  top: calc(70% - 25px);
+  top: calc(60% - 25px);
   left: 40%;
   height: 30px;
   background-color: #fff;
