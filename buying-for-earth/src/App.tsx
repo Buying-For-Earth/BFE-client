@@ -31,7 +31,7 @@ function App() {
       ) : location.pathname === '/category' ? (
         <Header />
       ) : location.pathname === '/cart' ? (
-        <Header />
+        <Header title="장바구니" />
       ) : null}
       <Switch>
         <Route path="/" exact render={() => <Home />} />
