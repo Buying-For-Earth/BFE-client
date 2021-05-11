@@ -8,18 +8,19 @@
   .search-result-box__image {
     border: 1px solid;
     width: 100%;
+    height: 161.75px;
     margin-bottom: 15px;
     overflow: hidden;
     color: transparent;
   }
-  .search-result-box__image::after {
-    content: '';
-    display: block;
-    padding-bottom: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  // .search-result-box__image::after {
+  //   content: '';
+  //   display: block;
+  //   padding-bottom: 100%;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
   .search-result-box__name {
     font-size: 14px;
     font-weight: 400;

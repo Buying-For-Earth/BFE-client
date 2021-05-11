@@ -31,7 +31,7 @@ function App() {
         </div>
         <div className="wrap-webDiv__qrCode"></div>
       </div>
-      <div className="wrap-content">
+      <div className="wrap-content scroll">
         {location.pathname === '/' ? (
           <Header />
         ) : location.pathname === '/cart' ? (
@@ -45,7 +45,6 @@ function App() {
           <Route path="/cart" render={() => <Cart isCart />} />
           <Route path="/direct/:id" render={() => <Cart />} />
           <Route path="/product/:id?" render={() => <Product />} />
-          <Route path="/complete" render={() => <Complete />} />
           <Route path="/info" component={Info} />
           <Route path="/landing" render={() => <Landing />} />
         </Switch>

@@ -5,6 +5,7 @@ import search from './search';
 import home from './home';
 import cart from './cart';
 import direct from './direct';
+import price from './price';
 
 const persistConfig = {
   key: 'root',
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   home,
   cart,
   direct,
+  price,
 });
 
 export default persistReducer(persistConfig, rootReducer);
