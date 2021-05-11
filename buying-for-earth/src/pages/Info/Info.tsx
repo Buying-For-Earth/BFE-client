@@ -57,7 +57,7 @@ function Info({ onInfoInput }: Props) {
           <div className="info">
             <div className="info__label">휴대폰</div>
             <input
-              type="text"
+              type="number"
               className="info__value"
               name="phone"
               placeholder="'-'없이 입력해주세요"

@@ -1,6 +1,7 @@
 .content-header {
   display: flex;
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
   align-items: center;
   font-weight: 400;
