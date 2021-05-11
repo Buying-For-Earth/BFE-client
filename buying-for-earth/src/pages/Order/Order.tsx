@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
 import ContentHeader from '../../components/ContentHeader';
 import { Item } from '../../modules/cart';
+import { Price as PriceType } from '../../modules/price';
 import Address from '../Address';
 import Complete from '../Complete';
 import Info from '../Info';
@@ -26,8 +27,7 @@ interface recipient {
 
 interface Props {
   orderList: Item[];
-  price?: number;
-  totalPrice?: number;
+  price: PriceType;
 }
 
 function Order({
@@ -35,7 +35,6 @@ function Order({
   match,
   orderList,
   price,
-  totalPrice,
 }: RouteComponentProps & Props) {
   const [address, setAddress] = useState('');
   const [orderer, setOrderer] = useState<orderer>({
@@ -67,8 +66,8 @@ function Order({
             <OrderItem items={orderList} />
             <Orderer onOrdererInput={handleOrdererInput} orderer={orderer} />
             <Destination address={address} recipient={recipient} />
-            <Price price={price} totalPrice={totalPrice} />
-            <PaymentOption totalPrice={totalPrice} />
+            <Price price={price} />
+            <PaymentOption price={price} />
           </div>
         )}
       />
@@ -82,7 +81,7 @@ function Order({
       />
       <Route
         path={`${match.url}/complete`}
-        render={() => <Complete totalPrice={totalPrice} name={orderer.name} />}
+        render={() => <Complete price={price} name={orderer.name} />}
       />
     </Switch>
   );

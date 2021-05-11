@@ -32,8 +32,12 @@ const directSlice = createSlice({
     directDecrease: (state) => {
       return { ...state, amount: state.amount - 1 };
     },
+    clearItem: (state) => {
+      return {} as Item;
+    },
   },
 });
 
-export const { addItem, directIncrease, directDecrease } = directSlice.actions;
+export const { addItem, directIncrease, directDecrease, clearItem } =
+  directSlice.actions;
 export default directSlice.reducer;
