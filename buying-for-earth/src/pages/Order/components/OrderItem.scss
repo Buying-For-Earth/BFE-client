@@ -1,7 +1,10 @@
 .order-item--container {
   padding: 1.5rem;
-  padding-top: 3rem;
   background-color: white;
+  .order-item__header {
+    padding-bottom: 10px;
+    font-size: 1.25rem;
+  }
   .order-item__info {
     padding-top: 0.5rem;
     display: flex;
@@ -11,25 +14,44 @@
       background-color: black;
     }
     .order-item__info__wrap {
-      padding: 0 1rem;
+      padding: 0 0.5rem;
       line-height: 1.25rem;
+      width: 100%;
+
+      .wrap__info {
+        display: flex;
+        justify-content: space-between;
+      }
+      .wrap__option {
+        font-size: 0.8rem;
+      }
     }
+
     .wrap__price {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      flex: 1;
+      align-items: flex-end;
+      justify-content: flex-end;
       div {
-        padding: 0.2rem;
+        padding: 0 0.2rem;
       }
-      .price {
-        font-weight: bold;
+      .discount-rate {
+        color: #ea910b;
+        padding-right: 0.5rem;
       }
+
       .amount {
         color: #696161;
       }
     }
-    .wrap {
-      padding: 0.15rem;
+    .price {
+      color: #7f7f7f;
+      text-decoration: line-through;
+      font-size: 0.8em;
+      padding: 0 0.2rem;
     }
+
     .wrap__option {
       color: #696161;
     }

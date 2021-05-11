@@ -30,7 +30,8 @@ function Price({ price }: Props) {
       <div className="price">
         <div className="price__label">배송비</div>
         <div className="price__value">
-          {price.productPrice === price.paymentPrice ? '0' : '+3,000'} 원
+          {price.productPrice - price.discountPrice >= 30000 ? '0' : '+3,000'}{' '}
+          원
         </div>
       </div>
       <div className="price price__total">

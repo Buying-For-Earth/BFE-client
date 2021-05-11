@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-  AiFillCheckCircle,
-  AiOutlineCheckCircle,
-  AiOutlineMinus,
-  AiOutlinePlus,
-} from 'react-icons/ai';
+import { AiFillCheckCircle, AiOutlineCheckCircle } from 'react-icons/ai';
+import { BsPlus, BsDash } from 'react-icons/bs';
 import { IoCloseOutline } from 'react-icons/io5';
 import { Item } from '../../../modules/cart';
 import './CartItem.scss';
@@ -55,6 +51,12 @@ function CartItem({
       <div className="cart-item__info">
         <img className="cart-item__info__image" src={item.thumbnail} alt="" />
         <div className="cart-item__info__wrap">
+          <div className="wrap__discount-price">
+            <span className="discount-rate">20%</span>
+            <span className="discount-price">
+              {(item.price * 0.8).toLocaleString()}원
+            </span>
+          </div>
           <div className="wrap__price">{item.price.toLocaleString()}원</div>
           <div className="wrap__amount">
             <button
@@ -66,14 +68,14 @@ function CartItem({
                 return onDecrease(item.id);
               }}
             >
-              <AiOutlineMinus color="#bbb" />
+              <BsDash color="#bbb" />
             </button>
             <input type="text" value={item.amount} readOnly />
             <button
               className="increase-btn"
               onClick={() => onIncrease(item.id)}
             >
-              <AiOutlinePlus color="#bbb" />
+              <BsPlus color="#bbb" />
             </button>
           </div>
         </div>
