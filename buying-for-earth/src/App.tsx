@@ -19,40 +19,48 @@ function App() {
   }
 
   return (
-    <div>
-      {location.pathname === '/' ? (
-        <Header />
-      ) : location.pathname === '/mypage' ? (
-        <Header />
-      ) : location.pathname === '/search' ? (
-        <Header />
-      ) : location.pathname === '/category' ? (
-        <Header />
-      ) : location.pathname === '/cart' ? (
-        <Header title="장바구니" />
-      ) : null}
-      <Switch>
-        <Route path="/" exact render={() => <Home />} />
-        <Route path="/search" render={() => <Search />} />
-        <Route path="/category" render={() => <Category />} />
-        <Route path="/mypage" render={() => <Mypage />} />
-        <Route path="/cart" render={() => <Cart isCart />} />
-        <Route path="/direct/:id" render={() => <Cart />} />
-        <Route path="/product/:id?" render={() => <Product />} />
-        <Route path="/info" component={Info} />
-        <Route path="/landing" render={() => <Landing />} />
-      </Switch>
-      {location.pathname === '/' ? (
-        <Navigation />
-      ) : location.pathname === '/mypage' ? (
-        <Navigation />
-      ) : location.pathname === '/search' ? (
-        <Navigation />
-      ) : location.pathname === '/category' ? (
-        <Navigation />
-      ) : location.pathname === '/cart' ? (
-        <Navigation />
-      ) : null}
+
+    <div className="wrap">
+      <div className="wrap-webDiv">
+        <div className="wrap-webDiv__text">
+          <div> 모바일에서</div>{' '}
+          <div>
+            <span className="wrap-webDiv__appName">바잉포어스</span> 를
+          </div>
+          <div> 만나보세요!</div>
+        </div>
+        <div className="wrap-webDiv__qrCode"></div>
+      </div>
+      <div className="wrap-content">
+        {location.pathname === '/' ? (
+          <Header />
+        ) : location.pathname === '/cart' ? (
+          <Header title="장바구니" />
+        ) : null}
+        <Switch>
+          <Route path="/" exact render={() => <Home />} />
+          <Route path="/search" render={() => <Search />} />
+          <Route path="/category" render={() => <Category />} />
+          <Route path="/mypage" render={() => <Mypage />} />
+          <Route path="/cart" render={() => <Cart isCart />} />
+          <Route path="/direct/:id" render={() => <Cart />} />
+          <Route path="/product/:id?" render={() => <Product />} />
+          <Route path="/complete" render={() => <Complete />} />
+          <Route path="/info" component={Info} />
+          <Route path="/landing" render={() => <Landing />} />
+        </Switch>
+        {location.pathname === '/' ? (
+          <Navigation />
+        ) : location.pathname === '/mypage' ? (
+          <Navigation />
+        ) : location.pathname === '/search' ? (
+          <Navigation />
+        ) : location.pathname === '/category' ? (
+          <Navigation />
+        ) : location.pathname === '/cart' ? (
+          <Navigation />
+        ) : null}
+      </div>
     </div>
   );
 }

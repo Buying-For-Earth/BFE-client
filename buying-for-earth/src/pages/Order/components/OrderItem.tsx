@@ -5,6 +5,10 @@ import './OrderItem.scss';
 interface Props {
   items: Item[];
 }
+interface Options {
+  name: string;
+  option: string;
+}
 
 function OrderItem({ items }: Props) {
   return (
@@ -20,7 +24,7 @@ function OrderItem({ items }: Props) {
           <div className="order-item__info__wrap">
             <div className="wrap wrap__name">{item.name}</div>
             <div className="wrap wrap__option">
-              {item.options?.map((ele, index) => {
+              {item.options.map((ele: Options, index: number) => {
                 return (
                   <div key={index}>
                     {ele.name} : {ele.option}
