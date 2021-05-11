@@ -10,6 +10,7 @@ import Landing from './pages/Landing';
 import Navigation from './components/Navigation';
 import Info from './pages/Info';
 import Header from './components/Header';
+import Complete from './pages/Complete';
 
 function App() {
   const location = useLocation();
@@ -19,7 +20,6 @@ function App() {
   }
 
   return (
-
     <div className="wrap">
       <div className="wrap-webDiv">
         <div className="wrap-webDiv__text">
