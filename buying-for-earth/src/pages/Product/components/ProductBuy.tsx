@@ -200,7 +200,9 @@ function ProductBuy({
             </div>
             <div className="total--container">
               <div className="total__name">총 금액</div>
-              <div className="total__price">{count * item.price * 0.8}원</div>
+              <div className="total__price">
+                {(count * item.price * 0.8).toLocaleString()}원
+              </div>
             </div>
           </div>
           <div className="modal__bottom-btn">

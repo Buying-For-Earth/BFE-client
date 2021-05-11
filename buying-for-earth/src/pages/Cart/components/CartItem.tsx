@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-  AiFillCheckCircle,
-  AiOutlineCheckCircle,
-  AiOutlineMinus,
-  AiOutlinePlus,
-} from 'react-icons/ai';
+import { AiFillCheckCircle, AiOutlineCheckCircle } from 'react-icons/ai';
+import { BsPlus, BsDash } from 'react-icons/bs';
 import { IoCloseOutline } from 'react-icons/io5';
 import { Item } from '../../../modules/cart';
 import './CartItem.scss';
@@ -72,14 +68,14 @@ function CartItem({
                 return onDecrease(item.id);
               }}
             >
-              <AiOutlineMinus color="#bbb" />
+              <BsDash color="#bbb" />
             </button>
             <input type="text" value={item.amount} readOnly />
             <button
               className="increase-btn"
               onClick={() => onIncrease(item.id)}
             >
-              <AiOutlinePlus color="#bbb" />
+              <BsPlus color="#bbb" />
             </button>
           </div>
         </div>

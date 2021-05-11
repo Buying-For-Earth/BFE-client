@@ -1,21 +1,28 @@
 .complete--container {
+  position: relative;
   height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: rgb(238, 238, 238);
   .complete-header {
+    position: absolute;
+    top: 5%;
+    width: 100%;
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     height: 3rem;
     line-height: 3rem;
     background-color: white;
   }
   .complete__confirm {
+    position: absolute;
+    top: 25%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: white;
-    margin: 1rem;
+
     .confirm__icon {
       font-size: 4rem;
       color: #34cdab;
