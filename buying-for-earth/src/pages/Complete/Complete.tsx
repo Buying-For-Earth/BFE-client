@@ -1,26 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { clear } from '../../modules/cart';
+import { clearItem } from '../../modules/direct';
+import { Price } from '../../modules/price';
 import './Complete.scss';
 
-interface Props {
-  name?: string;
-  totalPrice?: number;
-}
-function Complete({ name, totalPrice, history }: Props & RouteComponentProps) {
-  const [price, setPrice] = useState(0);
+type Props = {
+  price: Price;
+  name: string;
+};
+function Complete({ name, price, history }: Props & RouteComponentProps) {
   const dispatch = useDispatch();
+  const path = history.location.pathname.split('/');
+
   useEffect(() => {
-    const path = history.location.pathname.split('/');
-    setPrice(Number(totalPrice));
-    if (path[1] === 'cart') {
-      // 카트삭제
-      dispatch(clear());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [history, dispatch]);
+    return () => {
+      if (path[1] === 'cart') {
+        // 카트삭제
+        dispatch(clear());
+      } else {
+        dispatch(clearItem());
+      }
+    };
+  }, [path, dispatch]);
   return (
     <div className="complete--container">
       <div className="complete-header">주문완료</div>
@@ -37,7 +41,7 @@ function Complete({ name, totalPrice, history }: Props & RouteComponentProps) {
         <div className="confirm__price">
           <div className="confirm__price__label">결제금액</div>
           <div className="confirm__price__value">
-            {price.toLocaleString()} 원
+            {price.paymentPrice.toLocaleString()} 원
           </div>
         </div>
         <div className="confirm__detail">

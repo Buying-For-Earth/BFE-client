@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import './PaymentOption.scss';
 import { BsCreditCard } from 'react-icons/bs';
 import { Link, useRouteMatch } from 'react-router-dom';
+import { Price } from '../../../modules/price';
 
-interface Props {
-  totalPrice?: number;
-}
-function PaymentOption({ totalPrice }: Props) {
+type Props = {
+  price: Price;
+};
+
+function PaymentOption({ price }: Props) {
   const match = useRouteMatch();
   const [paymentButton, setPaymentBtn] = useState({
     active: '',
@@ -91,7 +93,7 @@ function PaymentOption({ totalPrice }: Props) {
       {paymentButton.active ? (
         <Link to={`${match.url}/complete`}>
           <div className="payment-btn">
-            {totalPrice?.toLocaleString()}원 결제하기
+            {price.paymentPrice.toLocaleString()}원 결제하기
           </div>
         </Link>
       ) : (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Route, RouteComponentProps, withRouter } from 'react-router';
 import ContentHeader from '../../components/ContentHeader';
 import './Cart.scss';
@@ -10,6 +10,11 @@ import Empty from './components/Empty';
 import Payment from './components/Payment';
 import Order from '../Order';
 import { RootState } from '../../modules';
+import {
+  getDiscountPrice,
+  getPaymentPrice,
+  getProductPrice,
+} from '../../modules/price';
 
 interface MatchParams {
   id: string;
@@ -23,9 +28,8 @@ interface Props {
 function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
   const items = useSelector((state: RootState) => state.cart);
   const directItem = useSelector((state: RootState) => state.direct);
+  const price = useSelector((state: RootState) => state.price);
   const dispatch = useDispatch();
-  const [price, setPrice] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
   const onIncrease = (id: number) => {
     // 상품 수량 +
     dispatch(increase(id));
@@ -55,23 +59,18 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
   };
 
   useEffect(() => {
-    let price = 0;
     if (isCart) {
-      items.forEach((item) => {
-        if (item.checked) price += item.price * item.amount;
-      });
+      dispatch(getProductPrice(items));
+      dispatch(getDiscountPrice(items));
     } else {
-      price = directItem.price * directItem.amount;
+      dispatch(getProductPrice([directItem]));
+      dispatch(getDiscountPrice([directItem]));
     }
-    if (price * 0.8 > 30000) {
-      setTotalPrice(price * 0.8);
-    } else if (price <= 0) {
-      setTotalPrice(0);
-    } else {
-      setTotalPrice(price * 0.8 + 3000);
-    }
-    setPrice(price);
-  }, [isCart, items, directItem]);
+  }, [isCart, items, directItem, dispatch]);
+
+  useEffect(() => {
+    dispatch(getPaymentPrice(price.productPrice - price.discountPrice));
+  }, [price.discountPrice, price.productPrice, dispatch]);
 
   return (
     <>
@@ -92,7 +91,7 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
                 />
               </div>
             </div>
-            <Payment price={price} totalPrice={totalPrice} />
+            <Payment price={price} />
           </>
         )}
       />
@@ -121,7 +120,7 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
                       );
                     })}
                   </div>
-                  <Payment price={price} totalPrice={totalPrice} />
+                  <Payment price={price} />
                 </>
               )}
             </div>
@@ -132,13 +131,9 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
         path={`${match.url}/order`}
         render={() =>
           isCart ? (
-            <Order orderList={items} price={price} totalPrice={totalPrice} />
+            <Order orderList={items} price={price} />
           ) : (
-            <Order
-              orderList={[directItem]}
-              price={price}
-              totalPrice={totalPrice}
-            />
+            <Order orderList={[directItem]} price={price} />
           )
         }
       />
