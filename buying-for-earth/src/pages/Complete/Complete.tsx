@@ -17,9 +17,9 @@ function Complete({ name, totalPrice, history }: Props & RouteComponentProps) {
     setPrice(Number(totalPrice));
     if (path[1] === 'cart') {
       // 카트삭제
-      console.log('clear');
       dispatch(clear());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [history, dispatch]);
   return (
     <div className="complete--container">

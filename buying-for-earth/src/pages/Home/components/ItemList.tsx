@@ -21,8 +21,12 @@ function ItemList({ list }: ItemListProps) {
               />
             </Link>
             <div className="item-list__item__name">{item.name}</div>
-            <div className="item-list__item__price">
-              {item.price.toLocaleString()}원
+            <div className="item__discount">
+              <span style={{ color: '#ea910b', marginRight: '1rem' }}>20%</span>
+              {(item.price * 0.8).toLocaleString()}원
+            </div>
+            <div className="item__original-price">
+              {item.price.toLocaleString()}
             </div>
           </div>
         ))}

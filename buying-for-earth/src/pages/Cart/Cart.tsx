@@ -63,12 +63,12 @@ function Cart({ isCart, match }: RouteComponentProps<MatchParams> & Props) {
     } else {
       price = directItem.price * directItem.amount;
     }
-    if (price > 30000) {
-      setTotalPrice(price);
+    if (price * 0.8 > 30000) {
+      setTotalPrice(price * 0.8);
     } else if (price <= 0) {
       setTotalPrice(0);
     } else {
-      setTotalPrice(price + 3000);
+      setTotalPrice(price * 0.8 + 3000);
     }
     setPrice(price);
   }, [isCart, items, directItem]);

@@ -6,7 +6,6 @@ import Category from './pages/Category';
 import Mypage from './pages/Mypage';
 import Cart from './pages/Cart';
 import Product from './pages/Product';
-import Complete from './pages/Complete';
 import Landing from './pages/Landing';
 import Navigation from './components/Navigation';
 import Info from './pages/Info';
@@ -20,6 +19,7 @@ function App() {
   }
 
   return (
+
     <div className="wrap">
       <div className="wrap-webDiv">
         <div className="wrap-webDiv__text">
