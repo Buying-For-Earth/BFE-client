@@ -32,7 +32,7 @@ function Complete({ name, price, history }: Props & RouteComponentProps) {
         <div className="confirm__icon">
           <AiFillCheckCircle />
         </div>
-        <img src="/images/completeImage.jpg" alt="" className="confirm__img" />
+        {/* <img src="/images/favicon.ico" alt="" className="confirm__img" /> */}
         <div className="confirm__msg">
           {name} 님의 주문이 완료되었습니다.
           <br />
@@ -53,7 +53,7 @@ function Complete({ name, price, history }: Props & RouteComponentProps) {
           </div>
         </div>
       </div>
-      <div className="wrap">
+      <div className="wrap-btn">
         <div className="home-btn" onClick={() => history.push('/')}>
           홈으로 이동
         </div>

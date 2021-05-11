@@ -43,7 +43,7 @@ function Orderer({ onOrdererInput, orderer }: Props) {
         <div className="orderer__info">
           <div className="orderer__info__label">휴대폰</div>
           <input
-            type="text"
+            type="number"
             className="orderer__info__value"
             placeholder="'-' 없이 입력해주세요"
             name="phone"

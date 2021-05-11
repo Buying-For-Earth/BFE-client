@@ -55,6 +55,12 @@ function CartItem({
       <div className="cart-item__info">
         <img className="cart-item__info__image" src={item.thumbnail} alt="" />
         <div className="cart-item__info__wrap">
+          <div className="wrap__discount-price">
+            <span className="discount-rate">20%</span>
+            <span className="discount-price">
+              {(item.price * 0.8).toLocaleString()}원
+            </span>
+          </div>
           <div className="wrap__price">{item.price.toLocaleString()}원</div>
           <div className="wrap__amount">
             <button
