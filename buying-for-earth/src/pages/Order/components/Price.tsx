@@ -20,12 +20,14 @@ function Price({ price, totalPrice }: Props) {
       </div>
       <div className="price price__small">
         <div className="price__label">└ 할인금액</div>
-        <div className="price__value">0 원</div>
+        <div className="price__value">
+          {(-Number(price) * 0.2).toLocaleString()} 원
+        </div>
       </div>
       <div className="price">
         <div className="price__label">배송비</div>
         <div className="price__value">
-          {price === totalPrice ? '0' : '+3,000'} 원
+          {Number(price) * 0.8 > 30000 ? '0' : '+3,000'} 원
         </div>
       </div>
       <div className="price price__total">
