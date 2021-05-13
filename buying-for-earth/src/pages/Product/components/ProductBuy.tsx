@@ -3,6 +3,7 @@ import './ProductBuy.scss';
 import Modal from 'react-modal';
 import { BsChevronDown } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
 import { addItems } from '../../../modules/cart';
 import { RootState } from '../../../modules';
@@ -61,7 +62,9 @@ function ProductBuy({
   const [count, setCount] = useState(1);
   const items = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
-
+  const pc = useMediaQuery({
+    query: '(min-width: 900px)',
+  });
   function handleOpenModal() {
     setIsOpen(true);
   }
@@ -125,7 +128,7 @@ function ProductBuy({
 
   const customStyles = {
     content: {
-      top: '0',
+      top: pc ? 0 : '60%',
       left: '0',
       right: '0',
       bottom: '0',
@@ -155,8 +158,8 @@ function ProductBuy({
           parentSelector={() =>
             document.querySelector('#product') as HTMLSelectElement
           }
-          overlayClassName={'modal-open'}
-          bodyOpenClassName={null}
+          overlayClassName={pc ? 'modal-open' : ''}
+          // bodyOpenClassName={null}
         >
           {item.options.map((ele, index) => {
             if (ele.input_option.type === 'select') {
