@@ -20,7 +20,7 @@ export const priceSlice = createSlice({
     getProductPrice: (state, action) => {
       let price = 0;
       action.payload.forEach((item: Item) => {
-        price = price + item.price * item.amount;
+        price = item.checked ? price + item.price * item.amount : price;
       });
       return {
         ...state,
@@ -30,7 +30,7 @@ export const priceSlice = createSlice({
     getDiscountPrice: (state, action) => {
       let price = 0;
       action.payload.forEach((item: Item) => {
-        price = price + item.price * 0.2 * item.amount;
+        price = item.checked ? price + item.price * 0.2 * item.amount : price;
       });
       return {
         ...state,

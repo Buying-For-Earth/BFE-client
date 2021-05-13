@@ -90,7 +90,7 @@ function Product({ match }: RouteComponentProps<MatchParams>) {
   }, [match.params.id]);
 
   return (
-    <div className="product">
+    <div id="product" className="product">
       <ContentHeader title={item.name} />
       <ProductDetail item={item} />
       <Switch>

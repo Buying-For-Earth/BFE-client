@@ -42,7 +42,11 @@ function Order({
     phone: '',
     email: '',
   });
-  const [recipient, setRecipient] = useState<recipient>();
+  const [recipient, setRecipient] = useState<recipient>({
+    name: '',
+    phone: '',
+    request: '',
+  });
   const handleAddressInput = (address: string) => {
     setAddress(address);
   };
@@ -67,7 +71,12 @@ function Order({
             <Orderer onOrdererInput={handleOrdererInput} orderer={orderer} />
             <Destination address={address} recipient={recipient} />
             <Price price={price} />
-            <PaymentOption price={price} />
+            <PaymentOption
+              price={price}
+              orderer={orderer}
+              address={address}
+              recipient={recipient}
+            />
           </div>
         )}
       />

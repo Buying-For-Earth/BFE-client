@@ -7,7 +7,7 @@
   background-color: #fff;
   height: 4em;
   border-top: 1px solid hsla(240, 6%, 83%, 0.9);
-
+  cursor: pointer;
   .product-buy-btn-set {
     display: flex;
     justify-content: center;
@@ -53,6 +53,8 @@
     background-color: #fff;
     border: 1px solid #bbb;
     -webkit-appearance: none;
+    outline-style: none;
+    cursor: pointer;
   }
   .modal__select:nth-child(1) {
     margin-top: 10px;
@@ -86,6 +88,8 @@
         justify-content: center;
         align-items: center;
         margin-bottom: 0px;
+        cursor: pointer;
+        outline-style: none;
         div {
           display: flex;
           justify-content: center;
@@ -145,8 +149,8 @@
 .close {
   position: fixed;
   overflow: hidden;
+  cursor: pointer;
   top: calc(60% - 25px);
-  left: 40%;
   height: 30px;
   background-color: #fff;
   opacity: 1;
@@ -154,7 +158,7 @@
   border: 0;
   border-radius: 30px 30px 0 0;
   padding-top: 5px;
-  width: 20%;
+  width: 100px;
   box-shadow: 0 -2px 0px 0px rgb(64 60 67 / 16%);
 }
 .modal__bottom-btn {
@@ -184,6 +188,7 @@
   height: 46px;
   font-weight: bold;
   font-size: 16px;
+  cursor: pointer;
 }
 .modal__bottom-btn button:nth-child(1) {
   border: 1px solid #31ceac;
@@ -194,4 +199,8 @@
   background-color: #31ceac;
   color: #fff;
   border: none;
+}
+
+.ReactModal__Contet--after-open {
+  width: 50%;
 }

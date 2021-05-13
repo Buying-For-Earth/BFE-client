@@ -1,11 +1,23 @@
 .product {
   display: flex;
   flex-direction: column;
-
   .product-detail-nav--container {
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 36px;
+  }
+}
+
+.ReactModalPortal {
+  position: sticky;
+  left: 0;
+  bottom: 0;
+  .modal-open {
+    position: absolute;
+    height: 40vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 }
