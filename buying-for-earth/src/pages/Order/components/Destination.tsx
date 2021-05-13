@@ -14,8 +14,8 @@ interface recipient {
 }
 
 interface Props {
-  address?: string | null;
-  recipient?: recipient | null;
+  address: string;
+  recipient: recipient;
 }
 
 function Destination({
@@ -47,8 +47,8 @@ function Destination({
             history.push(`${match.url}/info`);
           }}
         >
-          <div className={recipient ? 'dst__input__label' : 'empty'}>
-            {recipient ? (
+          <div className={recipient.name ? 'dst__input__label' : 'empty'}>
+            {recipient.name ? (
               <>
                 <div>
                   {recipient.name}, {recipient.phone}
