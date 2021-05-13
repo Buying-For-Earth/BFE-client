@@ -151,6 +151,7 @@
   overflow: hidden;
   cursor: pointer;
   top: calc(60% - 25px);
+  left: 40%;
   height: 30px;
   background-color: #fff;
   opacity: 1;
@@ -160,6 +161,9 @@
   padding-top: 5px;
   width: 100px;
   box-shadow: 0 -2px 0px 0px rgb(64 60 67 / 16%);
+  @media all and (min-width: 900px) {
+    left: calc(50% + 150px);
+  }
 }
 .modal__bottom-btn {
   position: absolute;
