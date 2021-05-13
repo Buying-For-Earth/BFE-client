@@ -13,11 +13,6 @@ import Header from './components/Header';
 
 function App() {
   const location = useLocation();
-
-  if (!localStorage.getItem('items')) {
-    localStorage.setItem('items', '[]');
-  }
-
   return (
     <div className="wrap">
       <div className="wrap-webDiv">
