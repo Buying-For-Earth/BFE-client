@@ -125,13 +125,12 @@ function ProductBuy({
 
   const customStyles = {
     content: {
-      top: '60%',
+      top: '0',
       left: '0',
       right: '0',
       bottom: '0',
     },
     overlay: {
-      top: '0',
       left: '0',
       right: '0',
       bottom: '0',
@@ -153,16 +152,20 @@ function ProductBuy({
           className="product-buy__modal"
           // overlayClassName="product-buy__modal-overlay"
           ariaHideApp={false}
+          parentSelector={() =>
+            document.querySelector('#product') as HTMLSelectElement
+          }
+          overlayClassName={'modal-open'}
+          bodyOpenClassName={null}
         >
           {item.options.map((ele, index) => {
             if (ele.input_option.type === 'select') {
-              let optionValue: JSX.Element[] = ele.input_option.option_list!.map(
-                (ele, idx) => (
+              let optionValue: JSX.Element[] =
+                ele.input_option.option_list!.map((ele, idx) => (
                   <option value={ele} key={idx}>
                     {ele}
                   </option>
-                )
-              );
+                ));
               return (
                 <select
                   className="modal__select"
