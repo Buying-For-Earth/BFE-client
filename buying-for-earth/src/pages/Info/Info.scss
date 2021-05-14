@@ -1,5 +1,5 @@
 .info--container {
-  padding: 3rem 1.5rem;
+  padding: 0rem 1.5rem 0 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -10,8 +10,6 @@
     flex-direction: column;
     padding: 0.5rem 0;
 
-    .info__label {
-    }
     .info__value {
       height: 48px;
       padding: 0rem 1rem;

@@ -18,7 +18,6 @@ function Info({ onInfoInput }: Props) {
     radio1: true,
     radio2: false,
     radio3: false,
-    radio4: false,
   });
 
   const handleRadio = (e: any) => {
@@ -39,6 +38,16 @@ function Info({ onInfoInput }: Props) {
     let { name } = e.target;
     setInfo({ ...info, [name]: e.target.value });
   };
+  const handleFormCheck = (e: any) => {
+    if (!info.name) {
+      alert('받으실 분 이름을 입력해주세요');
+    } else if (!info.phone) {
+      alert('받으실 분 연락처를 입력해주세요');
+    } else {
+      onInfoInput(info);
+    }
+  };
+
   return (
     <>
       <ContentHeader title={'배송정보'} />
@@ -57,7 +66,7 @@ function Info({ onInfoInput }: Props) {
           <div className="info">
             <div className="info__label">휴대폰</div>
             <input
-              type="text"
+              type="number"
               className="info__value"
               name="phone"
               placeholder="'-'없이 입력해주세요"
@@ -97,19 +106,9 @@ function Info({ onInfoInput }: Props) {
               />
               택배함
             </label>
-            <label htmlFor="">
-              <input
-                type="radio"
-                name="radio4"
-                checked={radioCheck.radio4}
-                onChange={handleRadio}
-                value="기타 장소"
-              />
-              기타 장소
-            </label>
           </div>
         </div>
-        <div className="info__save" onClick={() => onInfoInput(info)}>
+        <div className="info__save" onClick={handleFormCheck}>
           저장
         </div>
       </div>

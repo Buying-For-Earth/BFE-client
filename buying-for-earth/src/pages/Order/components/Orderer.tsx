@@ -10,8 +10,9 @@ interface orderer {
 
 interface Props {
   onOrdererInput: (e: any) => void;
+  orderer: orderer;
 }
-function Orderer({ onOrdererInput }: Props) {
+function Orderer({ onOrdererInput, orderer }: Props) {
   const [toggle, setToggle] = useState(false);
   const handleToggle = () => {
     setToggle(!toggle);
@@ -36,26 +37,29 @@ function Orderer({ onOrdererInput }: Props) {
             placeholder="이름을 입력해주세요"
             name="name"
             onChange={onOrdererInput}
+            value={orderer.name}
           />
         </div>
         <div className="orderer__info">
           <div className="orderer__info__label">휴대폰</div>
           <input
-            type="text"
+            type="number"
             className="orderer__info__value"
             placeholder="'-' 없이 입력해주세요"
             name="phone"
             onChange={onOrdererInput}
+            value={orderer.phone}
           />
         </div>
         <div className="orderer__info">
           <div className="orderer__info__label">이메일</div>
           <input
-            type="text"
+            type="email"
             className="orderer__info__value"
             placeholder="이메일을 입력해주세요"
             name="email"
             onChange={onOrdererInput}
+            value={orderer.email}
           />
         </div>
       </div>

@@ -1,24 +1,12 @@
 import React from 'react';
-import {
-  AiFillCheckCircle,
-  AiOutlineCheckCircle,
-  AiOutlineClose,
-  AiOutlineMinus,
-  AiOutlinePlus,
-} from 'react-icons/ai';
+import { AiFillCheckCircle, AiOutlineCheckCircle } from 'react-icons/ai';
+import { BsPlus, BsDash } from 'react-icons/bs';
+import { IoCloseOutline } from 'react-icons/io5';
+import { Item } from '../../../modules/cart';
 import './CartItem.scss';
 
-interface item {
-  id: number;
-  name: string;
-  thumbnail: string;
-  price: number;
-  checked: boolean;
-  amount: number;
-}
-
 interface Props {
-  item: item;
+  item: Item;
   isCart?: boolean;
   onIncrease: (id: number) => void;
   onDecrease: (id: number) => void;
@@ -34,6 +22,7 @@ function CartItem({
   onToggle,
   onRemove,
 }: Props) {
+  let optionArray = Array.from(item.options!);
   return (
     <div className="cart-item--container">
       <div className="cart-item__top">
@@ -43,9 +32,9 @@ function CartItem({
             onClick={() => onToggle(item.id)}
           >
             {item.checked ? (
-              <AiFillCheckCircle color="#34cdab" />
+              <AiFillCheckCircle color="#34CDAB" />
             ) : (
-              <AiOutlineCheckCircle />
+              <AiOutlineCheckCircle color="#aaa" />
             )}
           </div>
         )}
@@ -55,36 +44,51 @@ function CartItem({
             className="cart-item__top__remove"
             onClick={() => onRemove(item.id)}
           >
-            <AiOutlineClose />
+            <IoCloseOutline color="#aaa" />
           </div>
         )}
       </div>
       <div className="cart-item__info">
         <img className="cart-item__info__image" src={item.thumbnail} alt="" />
         <div className="cart-item__info__wrap">
-          <div className="wrap__price">{item.price}원</div>
+          <div className="wrap__discount-price">
+            <span className="discount-rate">20%</span>
+            <span className="discount-price">
+              {(item.price * 0.8).toLocaleString()}원
+            </span>
+          </div>
+          <div className="wrap__price">{item.price.toLocaleString()}원</div>
           <div className="wrap__amount">
             <button
               className="decrease-btn"
-              onClick={() => onDecrease(item.id)}
+              onClick={() => {
+                if (item.amount === 1) {
+                  return;
+                }
+                return onDecrease(item.id);
+              }}
             >
-              <AiOutlineMinus />
+              <BsDash color="#bbb" />
             </button>
-            <input type="text" value={item.amount} />
+            <input type="text" value={item.amount} readOnly />
             <button
               className="increase-btn"
               onClick={() => onIncrease(item.id)}
             >
-              <AiOutlinePlus />
+              <BsPlus color="#bbb" />
             </button>
           </div>
         </div>
       </div>
-      {/* <ul className="cart-item__info__options">
-        {items[0].options.map((option) => (
-          <li className="options__option">{option}</li>
-        ))}
-      </ul> */}
+      <ul className="cart-item__info__options">
+        {optionArray.map((ele, index) => {
+          return (
+            <li className="options__option" key={index}>
+              {ele.name} : {ele.option}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

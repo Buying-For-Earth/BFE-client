@@ -1,19 +1,46 @@
 import React, { useState } from 'react';
 import './PaymentOption.scss';
 import { BsCreditCard } from 'react-icons/bs';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
+import { Price } from '../../../modules/price';
+
+interface orderer {
+  name: string;
+  phone: string;
+  email: string;
+}
+
+interface recipient {
+  name: string;
+  phone: string;
+  request: string;
+}
 
 interface Props {
-  totalPrice?: number;
+  price: Price;
+  orderer: orderer;
+  recipient: recipient;
+  address: string;
 }
-function PaymentOption({ totalPrice }: Props) {
+
+function PaymentOption({ price, orderer, address, recipient }: Props) {
   const match = useRouteMatch();
   const [paymentButton, setPaymentBtn] = useState({
     active: '',
   });
+  const history = useHistory();
   const handleClick = (e: any) => {
     let name = e.target.name ? e.target.name : e.target.className;
     setPaymentBtn({ active: name });
+  };
+  const handleFormCheck = (e: any) => {
+    if (!orderer.name || !orderer.phone || !orderer.email) {
+      alert('주문자 정보를 모두 입력해주세요');
+    } else if (!address || !recipient.name) {
+      alert('배송정보를 입력해주세요');
+    } else {
+      history.push(`${match.url}/complete`);
+    }
   };
   return (
     <div className="payment-option--container">
@@ -89,9 +116,9 @@ function PaymentOption({ totalPrice }: Props) {
       </div>
 
       {paymentButton.active ? (
-        <Link to={`${match.url}/complete`}>
-          <div className="payment-btn">{totalPrice}원 결제하기</div>
-        </Link>
+        <div className="payment-btn" onClick={handleFormCheck}>
+          {price.paymentPrice.toLocaleString()}원 결제하기
+        </div>
       ) : (
         <div className="disabled">결제수단을 선택해주세요</div>
       )}

@@ -31,15 +31,15 @@ function Address({ history, onAddressInput }: Props & RouteComponentProps) {
     if (close) {
       history.go(-2);
     }
-  }, [close]);
+  }, [history, close]);
 
   const style: any = {
-    height: '100vh',
+    height: 'calc(100vh - 3rem)',
   };
   return (
     <>
       <ContentHeader title="주소검색" />
-      <div className="address--container" style={{ paddingTop: '3rem' }}>
+      <div className="address--container">
         <DaumPostCode style={style} onComplete={onCompletePost} autoClose />
       </div>
     </>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 import { Product } from '../../../modules/home';
 import 'slick-carousel/slick/slick.css';
@@ -11,6 +11,7 @@ interface RecommendProps {
 }
 
 function Recommend({ list }: RecommendProps) {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const settings = {
     infinite: true,
     speed: 500,
@@ -19,7 +20,9 @@ function Recommend({ list }: RecommendProps) {
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
+    afterChange: (current: number) => setCurrentSlide(current),
   };
+
   return (
     <div className="recommend--container">
       <div className="recommend__item">
@@ -33,6 +36,7 @@ function Recommend({ list }: RecommendProps) {
               </div>
             ))}
         </Slider>
+        <div className="page">{`${currentSlide + 1} / ${list.length}`}</div>
       </div>
     </div>
   );

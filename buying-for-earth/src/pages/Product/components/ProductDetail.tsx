@@ -41,9 +41,11 @@ function ProductDetail({ item }: ProductDetailProps) {
       <div className="product-detail__allPrice">
         <span className="allPrice__sale">20%</span>
         <span className="product-detail__discount-price">
-          {item.price * 0.8}원
+          {(item.price * 0.8).toLocaleString()}원
         </span>
-        <div className="product-detail__price">{item.price}원</div>
+        <div className="product-detail__price">
+          {item.price.toLocaleString()}원
+        </div>
       </div>
       <div className="product-detail__detailText">
         <div className="detailText__key">

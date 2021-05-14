@@ -41,7 +41,15 @@ interface ItemProps {
   options: Options[];
 }
 
+type SelectOption = {
+  name: string;
+  option: string;
+};
+
 function Product({ match }: RouteComponentProps<MatchParams>) {
+  const [selectOptionList, setSelectOptionList] = useState<SelectOption[] | []>(
+    []
+  );
   const [item, setItem] = useState<ItemProps>({
     category: '',
     thumbnail: '',
@@ -65,21 +73,35 @@ function Product({ match }: RouteComponentProps<MatchParams>) {
       )
       .then((response) => {
         setItem(response.data);
+        let setIniOption = [];
+        for (const i of response.data.options) {
+          if (i.input_option.type === 'select') {
+            setIniOption.push({
+              name: i.input_option.name,
+              option: i.input_option.option_list![0],
+            });
+          }
+          setSelectOptionList(setIniOption);
+        }
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [match.params.id]);
 
   return (
-    <div className="product">
+    <div id="product" className="product">
       <ContentHeader title={item.name} />
       <ProductDetail item={item} />
-      {/* <ProductDetailNav /> */}
       <Switch>
         <Route path="/product/review" render={() => <ProductReview />} />
       </Switch>
-      <ProductBuy item={item} id={match.params.id} />
+      <ProductBuy
+        item={item}
+        id={match.params.id}
+        selectOptionList={selectOptionList}
+        setSelectOptionList={setSelectOptionList}
+      />
     </div>
   );
 }

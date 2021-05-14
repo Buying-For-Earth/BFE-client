@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
 import ContentHeader from '../../components/ContentHeader';
+import { Item } from '../../modules/cart';
+import { Price as PriceType } from '../../modules/price';
 import Address from '../Address';
 import Complete from '../Complete';
 import Info from '../Info';
@@ -11,15 +12,6 @@ import OrderItem from './components/OrderItem';
 import PaymentOption from './components/PaymentOption';
 import Price from './components/Price';
 import './Order.scss';
-
-interface item {
-  id: number;
-  name: string;
-  thumbnail: string;
-  price: number;
-  amount: number;
-  checked: boolean;
-}
 
 interface orderer {
   name: string;
@@ -33,37 +25,28 @@ interface recipient {
   request: string;
 }
 
-interface locationProps {
-  orderList: item[];
-  price?: number;
-  totalPrice?: number;
-}
-
 interface Props {
-  orderList: item[];
-  price?: number;
-  totalPrice?: number;
+  orderList: Item[];
+  price: PriceType;
 }
 
 function Order({
-  location,
   history,
   match,
   orderList,
   price,
-  totalPrice,
 }: RouteComponentProps & Props) {
-  // const [orderList, setOrderList] = useState<item[]>([]);
-  // const [price, setPrice] = useState<number>();
-  // const [totalPrice, setTotalPrice] = useState<number>();
-  // console.log(match.url + '/order');
   const [address, setAddress] = useState('');
   const [orderer, setOrderer] = useState<orderer>({
     name: '',
     phone: '',
     email: '',
   });
-  const [recipient, setRecipient] = useState<recipient>();
+  const [recipient, setRecipient] = useState<recipient>({
+    name: '',
+    phone: '',
+    request: '',
+  });
   const handleAddressInput = (address: string) => {
     setAddress(address);
   };
@@ -76,12 +59,6 @@ function Order({
     history.goBack();
   };
 
-  // useEffect(() => {
-  //   setOrderList(location.state.orderList);
-  //   setPrice(location.state.price);
-  //   setTotalPrice(location.state.totalPrice);
-  // }, [orderList]);
-
   return (
     <Switch>
       <Route
@@ -91,10 +68,15 @@ function Order({
           <div className="order--container">
             <ContentHeader title={'주문서'} />
             <OrderItem items={orderList} />
-            <Orderer onOrdererInput={handleOrdererInput} />
+            <Orderer onOrdererInput={handleOrdererInput} orderer={orderer} />
             <Destination address={address} recipient={recipient} />
-            <Price price={price} totalPrice={totalPrice} />
-            <PaymentOption totalPrice={totalPrice} />
+            <Price price={price} />
+            <PaymentOption
+              price={price}
+              orderer={orderer}
+              address={address}
+              recipient={recipient}
+            />
           </div>
         )}
       />
@@ -108,7 +90,7 @@ function Order({
       />
       <Route
         path={`${match.url}/complete`}
-        render={() => <Complete totalPrice={totalPrice} name={orderer.name} />}
+        render={() => <Complete price={price} name={orderer.name} />}
       />
     </Switch>
   );

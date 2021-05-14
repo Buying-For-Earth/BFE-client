@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Landing.scss';
 
 function Landing() {
-  //   const [scrollY, setScrollY] = useState(0);
-
-  //   useEffect(() => {
-  //     window.onscroll = () => {
-  //       setScrollY(window.pageYOffset);
-  //     };
-  //   }, []);
-
   const settings = {
     dots: true,
     infinite: false,
@@ -65,7 +57,9 @@ function Landing() {
           </p>
         </div>
       </Slider>
-      <a href="https://url.kr/ajlows">친환경 제품 구경하러 가기!</a>
+      <a href="http://buying-for-earth.s3-website.ap-northeast-2.amazonaws.com/">
+        친환경 제품 구경하러 가기!
+      </a>
     </div>
   );
 }

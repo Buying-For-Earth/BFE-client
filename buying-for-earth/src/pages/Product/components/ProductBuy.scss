@@ -1,13 +1,13 @@
 .product-buy--container {
   display: block;
-  position: fixed;
+  position: sticky;
   left: 0;
   bottom: 0;
   width: 100%;
   background-color: #fff;
   height: 4em;
   border-top: 1px solid hsla(240, 6%, 83%, 0.9);
-
+  cursor: pointer;
   .product-buy-btn-set {
     display: flex;
     justify-content: center;
@@ -20,7 +20,7 @@
       justify-content: center;
       align-items: center;
       width: 90%;
-      background-color: #31ceac;
+      background-color: #34cdab;
       margin: auto;
       height: 70%;
       color: #fff;
@@ -44,11 +44,17 @@
   flex-direction: column;
   align-items: center;
   .modal__select {
+    padding-left: 10px;
     margin: 5px;
     width: 90%;
     height: 13%;
+    background: url(../images/down.png) no-repeat 95% 50%;
+    background-size: 5%;
     background-color: #fff;
     border: 1px solid #bbb;
+    -webkit-appearance: none;
+    outline-style: none;
+    cursor: pointer;
   }
   .modal__select:nth-child(1) {
     margin-top: 10px;
@@ -66,6 +72,7 @@
       border: 1px solid #bbb;
       align-items: center;
       font-weight: 100;
+      height: 100%;
 
       div {
         font-size: 36px;
@@ -73,20 +80,39 @@
       }
       button {
         width: 36px;
-        height: 36px;
+        height: 100%;
         border: none;
         font-size: 18px;
         background-color: transparent;
-      }
-      .modal__count__increase {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 0px;
+        cursor: pointer;
+        outline-style: none;
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          font-size: 24px;
+          font-weight: lighter;
+        }
+      }
+      .modal__count__increase {
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+        font-family: 'Noto Sans KR';
+        padding-bottom: 5px;
       }
       .modal__count__decrease {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-bottom: 6.5px;
+        font-family: 'Noto Sans KR';
       }
     }
 
@@ -119,12 +145,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  opacity: 1;
 }
 .close {
   position: fixed;
   overflow: hidden;
-  top: calc(70% - 25px);
+  cursor: pointer;
+  top: calc(60% - 25px);
   left: 40%;
   height: 30px;
   background-color: #fff;
@@ -135,6 +161,10 @@
   padding-top: 5px;
   width: 20%;
   box-shadow: 0 -2px 0px 0px rgb(64 60 67 / 16%);
+  @media all and (min-width: 900px) {
+    left: calc(50% + 150px);
+    width: 100px;
+  }
 }
 .modal__bottom-btn {
   position: absolute;
@@ -163,6 +193,7 @@
   height: 46px;
   font-weight: bold;
   font-size: 16px;
+  cursor: pointer;
 }
 .modal__bottom-btn button:nth-child(1) {
   border: 1px solid #31ceac;
@@ -173,4 +204,8 @@
   background-color: #31ceac;
   color: #fff;
   border: none;
+}
+
+.ReactModal__Contet--after-open {
+  width: 50%;
 }
