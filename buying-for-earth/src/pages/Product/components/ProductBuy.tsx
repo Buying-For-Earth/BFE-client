@@ -110,6 +110,7 @@ function ProductBuy({
         id: id,
         options: selectOptionList,
         amount: count,
+        checked: true,
       })
     );
   };
